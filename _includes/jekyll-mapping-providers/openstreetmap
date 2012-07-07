@@ -5,10 +5,8 @@ jekyllMapping = function(){
     return {
         mappingInitialize: function() {
             var markers = new OpenLayers.Layer.Markers("Markers")
-            var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
-            var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
-            var center = new OpenLayers.LonLat({{ page.longitude }},{{ page.latitude }}).transform( fromProjection, toProjection);
-            map = new OpenLayers.Map("jekyll-mapping");
+            var center = new OpenLayers.LonLat({{ page.longitude }},{{ page.latitude }}).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913");
+            var map = new OpenLayers.Map("jekyll-mapping");
             map.addLayer(new OpenLayers.Layer.OSM());
             map.setCenter(center, {{ site.mapping.zoom }});
             map.addLayer(markers);
