@@ -74,4 +74,9 @@ Include any required JavaScript at the foot of your templates:
 
 Enjoy!
 
+## Future things to do
 
+* Allow for custom markers to be set (both for the site as a whole and for specific pieces of content)
+* More mapping providers (Bing?)
+* More flexibility (allow specific zoom levels to be set for individual content items, if desired)
+* Any more ideas? Please suggest them.
