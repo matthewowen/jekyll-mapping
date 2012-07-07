@@ -5,7 +5,14 @@ module Jekyll
             @engine = @config['provider']
             @key = @config['api_key']
             @zoom = @config['zoom']
-            @size = text
+            @textif = text
+            if text == ""
+                @width = "600"
+                @height = "400"
+            else
+                @width = text.split(",").first
+                @height = text.split(",").last
+            end
             super
         end
 
@@ -13,9 +20,10 @@ module Jekyll
             @latitude = context['page']['latitude']
             @longitude = context['page']['longitude']
             if @engine == 'google_static'
-                return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{@latitude},#{@longitude}&size=#{@size}&zoom=#{@zoom}&sensor=false\">"
+                return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{@latitude},#{@longitude}&size=#{@width}x#{@height}&zoom=#{@zoom}&sensor=false\">"
             elsif @engine == 'google_js' || 'openstreetmap'
-                return "<div id=\"jekyll-mapping\"></div>""
+                return "<div id=\"jekyll-mapping\"></div>"
+            end
         end
     end
 end

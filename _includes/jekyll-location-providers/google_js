@@ -27,3 +27,12 @@ jekyllMapping = function(){
 
 window.onload = jekyllMapping.loadScript();
 </script>
+
+{% if site.mapping.dimensions %}
+<style type="text/css">
+    #jekyll-mapping{
+        width: {{ site.mapping.dimensions.width }}px;
+        height: {{ site.mapping.dimensions.height }}px;
+    }
+</style>
+{% endif %}
