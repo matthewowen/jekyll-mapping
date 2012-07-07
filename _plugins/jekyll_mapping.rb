@@ -7,7 +7,7 @@ module Jekyll
             if @config['zoom'] == ""
                 @zoom = '10'
             else
-                @zoom = @config['zoom']
+                @zoom = @config['zoom'].strip
             end
             @textif = text
             if text == ""

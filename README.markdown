@@ -1,27 +1,27 @@
-## Jekyll Mapping
+# Jekyll Mapping
 
 Jekyll mapping is a plugin for Jekyll that lets you easily add maps to content.
 
-### Supported providers
+## Supported providers
 
-#### Google static image
+### Google static image
 
 provider: google_static
 https://developers.google.com/maps/documentation/staticmaps/
 
 Embeds a static image, centered on the specificed location, with a marker at the specified location
 
-#### Google JS API
+### Google JS API
 
 provider: google_js
 https://developers.google.com/maps/documentation/javascript/
 
 Embeds an interactive map using the V3 JS API. Using this requires an API key to be specified within _config.yml
 
-#### OpenStreetMap
+### OpenStreetMap
 Uses [OpenStreetMap](http://www.openstreetmap.org/) and [OpenLayers](http://openlayers.org/) to provide interactive maps. Doesn't require an API key.
 
-### Configuration
+## Configuration
 
 To use, include configuration information in _config.yml. At minimum, specify a provider:
     mapping:
