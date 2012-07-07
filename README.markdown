@@ -55,6 +55,8 @@ If using Google JS API, include an API key:
             width: 600
             height: 400
 
+Put the contents of '_includes' in your '_includes' directory and the contents of '_plugins' in your '_plugins' directory (or just copy the directories if you don't have those directories yet).
+
 Set 'latitude' and 'longitude' values in the YAML front matter of pages and posts:
 
     latitude: 51.101
