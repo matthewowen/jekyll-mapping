@@ -1,5 +1,5 @@
 mapping:
-    provider: google_js
+    provider: google_static
     api_key: 123456
     zoom: 10
     dimensions:
