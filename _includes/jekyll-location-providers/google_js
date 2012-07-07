@@ -1,0 +1,29 @@
+<script type="text/javascript">
+jekyllMapping = function(){
+    return {
+        mappingInitialize: function() {
+            var options = {
+                zoom: {{ site.mapping.zoom }},
+                center: new google.maps.LatLng({{ page.latitude }}, {{ page.longitude }}),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(document.getElementById("jekyll-mapping"), options);
+            
+            var marker = new google.maps.Marker({
+              position: options.center,
+              map: map,
+              title: "{{ page.title }}"
+            });
+        },
+        loadScript: function(){
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            that = this;
+            script.src = "http://maps.googleapis.com/maps/api/js?key={{ site.mapping.api_key}}&sensor=false&callback=that.mappingInitialize";
+            document.body.appendChild(script);
+        }
+    }
+}()
+
+window.onload = jekyllMapping.loadScript();
+</script>

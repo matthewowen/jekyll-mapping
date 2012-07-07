@@ -12,7 +12,10 @@ module Jekyll
         def render(context)
             @latitude = context['page']['latitude']
             @longitude = context['page']['longitude']
-            "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{@latitude},#{@longitude}&size=#{@size}&zoom=#{@zoom}&sensor=false\">"
+            if @engine == 'google_static'
+                return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{@latitude},#{@longitude}&size=#{@size}&zoom=#{@zoom}&sensor=false\">"
+            elsif @engine == 'google_js' || 'openstreetmap'
+                return "<div id=\"jekyll-mapping\"></div>""
         end
     end
 end

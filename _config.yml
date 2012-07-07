@@ -1,0 +1,4 @@
+mapping:
+    provider: google_js
+    api_key: 123456
+    zoom: 8
