@@ -5,13 +5,14 @@ module Jekyll
             @engine = @config['provider']
             @key = @config['api_key']
             @zoom = @config['zoom']
+            @size = text
             super
         end
 
         def render(context)
             @latitude = context['page']['latitude']
             @longitude = context['page']['longitude']
-            "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{@latitude},#{@longitude}&size=500x400&zoom=#{@zoom}&sensor=false\">"
+            "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{@latitude},#{@longitude}&size=#{@size}&zoom=#{@zoom}&sensor=false\">"
         end
     end
 end
