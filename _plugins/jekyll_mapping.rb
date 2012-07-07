@@ -4,7 +4,11 @@ module Jekyll
             @config = Jekyll.configuration({})['mapping']
             @engine = @config['provider']
             @key = @config['api_key']
-            @zoom = @config['zoom']
+            if @config['zoom'] == ""
+                @zoom = '10'
+            else
+                @zoom = @config['zoom']
+            end
             @textif = text
             if text == ""
                 if @config['dimensions']

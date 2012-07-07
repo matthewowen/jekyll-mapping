@@ -1,7 +1,7 @@
 mapping:
     provider: google_js
     api_key: 123456
-    zoom: 8
+    zoom: 10
     dimensions:
         width: 600
-        height: 300
+        height: 400
