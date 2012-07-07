@@ -4,12 +4,7 @@ module Jekyll
             @config = Jekyll.configuration({})['mapping']
             @engine = @config['provider']
             @key = @config['api_key']
-            if @config['zoom'] == ""
-                @zoom = '10'
-            else
-                @zoom = @config['zoom'].strip
-            end
-            @textif = text
+            @zoom = @config['zoom']
             if text == ""
                 if @config['dimensions']
                     @width = @config['dimensions']['width']
@@ -26,10 +21,10 @@ module Jekyll
         end
 
         def render(context)
-            @latitude = context['page']['latitude']
-            @longitude = context['page']['longitude']
+            latitude = context['page']['latitude']
+            longitude = context['page']['longitude']
             if @engine == 'google_static'
-                return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{@latitude},#{@longitude}&size=#{@width}x#{@height}&zoom=#{@zoom}&sensor=false\">"
+                return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{latitude},#{longitude}&size=#{@width}x#{@height}&zoom=#{@zoom}&sensor=false\">"
             elsif @engine == 'google_js' || 'openstreetmap'
                 return "<div id=\"jekyll-mapping\" style=\"height:#{@height}px;width:#{@width}px;\"></div>"
             end
