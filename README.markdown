@@ -24,10 +24,12 @@ Uses [OpenStreetMap](http://www.openstreetmap.org/) and [OpenLayers](http://open
 ## Configuration
 
 To use, include configuration information in _config.yml. At minimum, specify a provider:
+
     mapping:
         provider: google_static
 
 If desired, set default dimensions for the map, and/or a zoom level for maps:
+
     mapping:
         provider: openstreetmap
         zoom: 10
@@ -36,6 +38,7 @@ If desired, set default dimensions for the map, and/or a zoom level for maps:
             height: 400
 
 If using Google JS API, include an API key:
+
     mapping:
         provider: google_js
         api_key: 123456
