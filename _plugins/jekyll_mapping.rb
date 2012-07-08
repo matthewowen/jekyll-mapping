@@ -25,12 +25,14 @@ module Jekyll
         end
 
         def render(context)
-            latitude = context['page']['latitude']
-            longitude = context['page']['longitude']
-            if @engine == 'google_static'
-                return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{latitude},#{longitude}&size=#{@width}x#{@height}&zoom=#{@zoom}&sensor=false\">"
-            elsif @engine == 'google_js' || 'openstreetmap'
-                return "<div id=\"jekyll-mapping\" style=\"height:#{@height}px;width:#{@width}px;\"></div>"
+            if context['page'].has_key?('latitude') && context['page'].has_key?('longitude')
+                latitude = context['page']['latitude']
+                longitude = context['page']['longitude']
+                if @engine == 'google_static'
+                    return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{latitude},#{longitude}&size=#{@width}x#{@height}&zoom=#{@zoom}&sensor=false\">"
+                elsif @engine == 'google_js' || 'openstreetmap'
+                    return "<div id=\"jekyll-mapping\" style=\"height:#{@height}px;width:#{@width}px;\"></div>"
+                end
             end
         end
     end
