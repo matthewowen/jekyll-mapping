@@ -31,17 +31,16 @@ Uses [OpenStreetMap](http://www.openstreetmap.org/) and [OpenLayers](http://open
 
 ## Configuration
 
-To use, include configuration information in _config.yml. At minimum, specify a provider and default zoom level:
+To use, include configuration information in _config.yml. At minimum, specify a provider:
 
     mapping:
         provider: google_static
-        zoom: 10
 
-If desired, set default dimensions for maps:
+If desired, set default dimensions for maps and a custom zoom level (the default zoom level is 10):
 
     mapping:
         provider: openstreetmap
-        zoom: 10
+        zoom: 8
         dimensions:
             width: 600
             height: 400

@@ -3,7 +3,11 @@ jekyllMapping = function(){
     return {
         mappingInitialize: function() {
             var options = {
+                {% if site.mapping_zoom %}
                 zoom: {{ site.mapping.zoom }},
+                {% else %}
+                zoom: 10,
+                {% endif %}
                 center: new google.maps.LatLng({{ page.latitude }}, {{ page.longitude }}),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             }
