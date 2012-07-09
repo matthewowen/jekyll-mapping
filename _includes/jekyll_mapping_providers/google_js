@@ -1,16 +1,18 @@
 <script type="text/javascript">
+var settings = {};
 jekyllMapping = function(){
+    var defaults = {
+        zoom: 10
+    }
+    settings = $.extend(true, {}, defaults, {% yaml_to_json mapping %})
     return {
         mappingInitialize: function() {
             var options = {
-                {% if site.mapping_zoom %}
-                zoom: {{ site.mapping.zoom }},
-                {% else %}
-                zoom: 10,
-                {% endif %}
-                center: new google.maps.LatLng({{ page.latitude }}, {{ page.longitude }}),
+                zoom: settings.zoom,
+                center: new google.maps.LatLng(settings.latitude, settings.longitude),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             }
+
             var map = new google.maps.Map(document.getElementById("jekyll-mapping"), options);
             
             var marker = new google.maps.Marker({
