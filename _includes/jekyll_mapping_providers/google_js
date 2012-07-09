@@ -20,6 +20,11 @@ jekyllMapping = function(){
               map: map,
               title: "{{ page.title }}"
             });
+
+            if (settings.kml) {
+                var myLayer = new google.maps.KmlLayer(settings.kml)
+                myLayer.setMap(map);
+            }
         },
         loadScript: function(){
             var script = document.createElement("script");
