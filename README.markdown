@@ -57,10 +57,11 @@ If using Google JS API, include an API key:
 
 Put the contents of '_includes' in your '_includes' directory and the contents of '_plugins' in your '_plugins' directory (or just copy the directories if you don't have those directories yet).
 
-Set 'latitude' and 'longitude' values in the YAML front matter of pages and posts:
+Set the relevant values in the YAML front matter of pages and posts:
 
-    latitude: 51.101
-    longitude: 0.1
+    mapping:
+        latitude: 51.101
+        longitude: 0.1
 
 Include the render_map tag in your templates where you'd like the map to appear:
 
