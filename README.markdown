@@ -72,7 +72,7 @@ Optionally, specify the width for the map here:
 
 Include the required JavaScript at the foot of your templates:
 
-    {% include jekyll-mapping %}
+    {% include jekyll_mapping %}
     </body>
 
 You don't need to wrap the above in any if statements - jekyll-mapping won't output anything if the page doesn't have both a latitude and longitude set.
