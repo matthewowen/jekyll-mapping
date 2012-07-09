@@ -25,7 +25,7 @@ module Jekyll
         end
 
         def render(context)
-            if context['page']['mapping'].has_key?('latitude') && context['page']['mapping'].has_key?('longitude')
+            if context['page']['mapping']
                 latitude = context['page']['mapping']['latitude']
                 longitude = context['page']['mapping']['longitude']
                 if @engine == 'google_static'

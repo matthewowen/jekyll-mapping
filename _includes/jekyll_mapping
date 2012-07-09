@@ -1,4 +1,4 @@
-{% if site.mapping.provider and page.latitude and page.longitude %}
+{% if site.mapping.provider and page.mapping %}
     {% case site.mapping.provider %}
         {% when "google_js" %}
             {% include jekyll_mapping_providers/google_js %}
