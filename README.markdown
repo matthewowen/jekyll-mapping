@@ -82,7 +82,7 @@ Enjoy!
 
 ## Further usage
 
-At it's most basic, you can just set a latitude and longitude for a piece of content. In this case, it'll just plot that location on a map. However, if you're using google_js (functionality to follow for OpenStreetMap), you can do some other exciting things!
+At it's most basic, you can just set a latitude and longitude for a piece of content. In this case, it'll just plot that location on a map. However, you can do some other exciting things too!
 
 If you set multiple locations, they'll all be mapped and the map will be zoomed and panned to fit them. Do it like so:
 
@@ -102,6 +102,7 @@ If you'd like to use KML, you can do that too. Just add 'layers' in a similar fa
             - http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss
             - http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml
 
+Right now, multiple locations works for both google_js and openstreetmap. KML definitely works for google_js and should work for openstreetmap, but needs more testing.
 
 ## Future things to do
 
