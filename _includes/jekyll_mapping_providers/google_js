@@ -1,10 +1,7 @@
 <script type="text/javascript">
 var settings = {};
 jekyllMapping = function(){
-    var defaults = {
-        zoom: 10
-    }
-    settings = $.extend(true, {}, defaults, {% yaml_to_json mapping %})
+    settings = {% yaml_to_json mapping %}
     return {
         mappingInitialize: function() {
             var options = {
