@@ -2,7 +2,6 @@ require 'json'
 
 module Jekyll
     class JSONTag < Liquid::Tag
-        safe true
         
         def initialize(tag_name, text, tokens)
             @key = text.strip
