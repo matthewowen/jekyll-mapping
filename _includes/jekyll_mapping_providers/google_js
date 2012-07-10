@@ -1,7 +1,6 @@
 <script type="text/javascript">
-var settings = {};
 jekyllMapping = function(){
-    settings = {% yaml_to_json mapping %}
+    var settings = {% yaml_to_json mapping %};
     return {
         mappingInitialize: function() {
             var options = {
