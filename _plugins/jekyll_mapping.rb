@@ -1,5 +1,7 @@
 module Jekyll
     class MapTag < Liquid::Tag
+        safe: true
+        
         def initialize(tag_name, text, tokens)
             @config = Jekyll.configuration({})['mapping']
             @engine = @config['provider']
