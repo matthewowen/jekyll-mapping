@@ -80,6 +80,29 @@ You don't need to wrap the above in any if statements - jekyll-mapping won't out
 
 Enjoy!
 
+## Further usage
+
+At it's most basic, you can just set a latitude and longitude for a piece of content. In this case, it'll just plot that location on a map. However, if you're using google_js (functionality to follow for OpenStreetMap), you can do some other exciting things!
+
+If you set multiple locations, they'll all be mapped and the map will be zoomed and panned to fit them. Do it like so:
+
+    mapping:
+        locations:
+            - title: foo
+              latitude: 10
+              longitude: 10
+            - title: bar
+              latitude: -10
+              longitude: -10
+
+If you'd like to use KML, you can do that too. Just add 'layers' in a similar fashion:
+
+    mapping:
+        layers:
+            - http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss
+            - http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml
+
+
 ## Future things to do
 
 * Allow for custom markers to be set (both for the site as a whole and for specific pieces of content)

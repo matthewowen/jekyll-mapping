@@ -39,11 +39,6 @@ var jekyllMapping = (function () {
                 }
                 map.fitBounds(bounds);
             }
-
-            if (settings.kml) {
-                var mainLayer = new google.maps.KmlLayer(settings.kml);
-                mainLayer.setMap(map);
-            }
             
             if (settings.layers) {
                 var layers = [];

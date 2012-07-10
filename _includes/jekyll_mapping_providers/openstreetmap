@@ -5,7 +5,7 @@ jekyllMapping = function(){
     return {
         mappingInitialize: function() {
             var markers = new OpenLayers.Layer.Markers("Markers")
-            var center = new OpenLayers.LonLat({{ page.longitude }},{{ page.latitude }}).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913");
+            var center = new OpenLayers.LonLat({{ page.mapping.longitude }},{{ page.mapping.latitude }}).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913");
             var map = new OpenLayers.Map("jekyll-mapping");
             map.addLayer(new OpenLayers.Layer.OSM());
             map.setCenter(center, {{ site.mapping.zoom }});
