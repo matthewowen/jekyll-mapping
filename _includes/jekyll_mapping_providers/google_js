@@ -9,7 +9,7 @@ var jekyllMapping = (function () {
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             }, map, mainMarker;
 
-            if (settings.latitude && settings.longitude) {
+            if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
                 options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
 
                 map = new google.maps.Map(document.getElementById("jekyll-mapping"), options);
@@ -38,6 +38,11 @@ var jekyllMapping = (function () {
                     bounds.extend(l);
                 }
                 map.fitBounds(bounds);
+            }
+
+            if (settings.kml) {
+                var mainLayer = new google.maps.KmlLayer(settings.kml);
+                mainLayer.setMap(map);
             }
             
             if (settings.layers) {
