@@ -1,36 +1,67 @@
 <script type="text/javascript">
-jekyllMapping = function(){
+var jekyllMapping = (function () {
+    'use strict';
     var settings = {% yaml_to_json mapping %};
     return {
-        mappingInitialize: function() {
+        mappingInitialize: function () {
             var options = {
                 zoom: settings.zoom,
-                center: new google.maps.LatLng(settings.latitude, settings.longitude),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
+            }, map, mainMarker;
+
+            if (settings.latitude && settings.longitude) {
+                options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
+
+                map = new google.maps.Map(document.getElementById("jekyll-mapping"), options);
+
+                mainMarker = new google.maps.Marker({
+                        position: options.center,
+                        map: map,
+                        title: "{{ page.title }}"
+                    });
+            } else {
+                options.center = new google.maps.LatLng(0, 0);
+                map = new google.maps.Map(document.getElementById("jekyll-mapping"), options);
             }
 
-            var map = new google.maps.Map(document.getElementById("jekyll-mapping"), options);
-            
-            var marker = new google.maps.Marker({
-              position: options.center,
-              map: map,
-              title: "{{ page.title }}"
-            });
+            if (settings.locations instanceof Array) {
+                var bounds = new google.maps.LatLngBounds(), markers = [], s, l, m;
+                while (settings.locations.length > 0) {
+                    s = settings.locations.pop();
+                    l = new google.maps.LatLng(s.latitude, s.longitude);
+                    m = new google.maps.Marker({
+                        position: l,
+                        map: map,
+                        title: s.title
+                    });
+                    markers.push(m);
+                    bounds.extend(l);
+                }
+                map.fitBounds(bounds);
+            }
 
             if (settings.kml) {
-                var myLayer = new google.maps.KmlLayer(settings.kml)
-                myLayer.setMap(map);
+                var mainLayer = new google.maps.KmlLayer(settings.kml);
+                mainLayer.setMap(map);
+            }
+            
+            if (settings.layers) {
+                var layers = [];
+                while (settings.layers.length > 0){
+                    var m = new google.maps.KmlLayer(settings.layers.pop());
+                    layers.push(m);
+                    m.setMap(map);
+                }
             }
         },
-        loadScript: function(){
+        loadScript: function () {
             var script = document.createElement("script");
             script.type = "text/javascript";
-            that = this;
-            script.src = "http://maps.googleapis.com/maps/api/js?key={{ site.mapping.api_key}}&sensor=false&callback=that.mappingInitialize";
+            script.src = "http://maps.googleapis.com/maps/api/js?key={{ site.mapping.api_key}}&sensor=false&callback=jekyllMapping.mappingInitialize";
             document.body.appendChild(script);
         }
-    }
-}()
+    };
+}());
 
 window.onload = jekyllMapping.loadScript();
 </script>
