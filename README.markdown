@@ -1,6 +1,6 @@
 # Jekyll Mapping
 
-Jekyll mapping is a plugin for Jekyll that lets you easily set a Lat/Long location for a page or post, and then embed a map based on that position.
+Jekyll mapping is a plugin for Jekyll that lets you easily embed Google and OpenStreetMap maps on your content, and then easily add markers and/or KML overlays to those maps.
 
 ## Supported providers
 
