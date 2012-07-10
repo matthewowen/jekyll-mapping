@@ -1,6 +1,6 @@
 mapping:
-    provider: google_static
-    api_key: 123456
+    provider: google_js
+    api_key: AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI
     zoom: 10
     dimensions:
         width: 600
