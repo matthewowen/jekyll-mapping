@@ -1,5 +1,5 @@
 <script type="text/javascript">
-var jekyllMapping = (function () {
+var jekyllMapping = (function (apiKey) {
     'use strict';
     var settings = {% yaml_to_json mapping %};
     return {
@@ -7,7 +7,8 @@ var jekyllMapping = (function () {
             var options = {
                 zoom: settings.zoom,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
-            }, map, mainMarker;
+            },
+            map, mainMarker;
 
             if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
                 options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
@@ -57,11 +58,11 @@ var jekyllMapping = (function () {
         loadScript: function () {
             var script = document.createElement("script");
             script.type = "text/javascript";
-            script.src = "http://maps.googleapis.com/maps/api/js?key={{ site.mapping.api_key}}&sensor=false&callback=jekyllMapping.mappingInitialize";
+            script.src = "http://maps.googleapis.com/maps/api/js?key=" + apiKey + "&sensor=false&callback=jekyllMapping.mappingInitialize";
             document.body.appendChild(script);
         }
     };
 }());
 
-window.onload = jekyllMapping.loadScript();
+window.onload = function () { jekyllMapping.loadScript({{ site.mapping.api_key}}) } );
 </script>

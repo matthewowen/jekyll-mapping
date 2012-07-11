@@ -31,7 +31,7 @@ module Jekyll
                 longitude = context['page']['mapping']['longitude']
                 if @engine == 'google_static'
                     return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?markers=#{latitude},#{longitude}&size=#{@width}x#{@height}&zoom=#{@zoom}&sensor=false\">"
-                elsif @engine == 'google_js' || 'openstreetmap'
+                elsif (@engine == 'google_js' || 'openstreetmap')
                     return "<div id=\"jekyll-mapping\" style=\"height:#{@height}px;width:#{@width}px;\"></div>"
                 end
             end

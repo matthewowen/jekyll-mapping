@@ -5,11 +5,12 @@ var jekyllMapping = (function () {
     var settings = {% yaml_to_json mapping %};
     return {
         mappingInitialize: function() {
-            var map, markers, center;
-            markers = new OpenLayers.Layer.Markers("Markers")
+            var center,
+            markers = new OpenLayers.Layer.Markers("Markers"),
             map = new OpenLayers.Map("jekyll-mapping");
             map.addLayer(new OpenLayers.Layer.OSM());
             map.addLayer(markers);
+
             if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
                 center = new OpenLayers.LonLat(settings.longitude, settings.latitude).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
                 map.setCenter(center, settings.zoom);
