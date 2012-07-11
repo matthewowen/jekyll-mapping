@@ -73,7 +73,7 @@ Optionally, specify the width for the map here:
 
 Include the required JavaScript at the foot of your templates:
 
-    {% include jekyll_mapping %}
+    {% include jekyll_mapping.html %}
     </body>
 
 You don't need to wrap the above in any if statements - jekyll-mapping won't output anything if the page doesn't have both a latitude and longitude set.
@@ -115,17 +115,17 @@ Right now, multiple locations works for both google_js and openstreetmap. KML de
 
 Copyright 2012 Matthew Owen
 
-Distributed under the terms of the GNU General Public License
+Distributed under the terms of the GNU Lesser General Public License
 
 This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
+it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU General Public License
+You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.

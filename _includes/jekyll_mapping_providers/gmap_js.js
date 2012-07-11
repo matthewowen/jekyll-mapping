@@ -1,7 +1,6 @@
 <script type="text/javascript">
-var jekyllMapping = (function (apiKey) {
+var jekyllMapping = (function (settings) {
     'use strict';
-    var settings = {% yaml_to_json mapping %};
     return {
         mappingInitialize: function () {
             var options = {
@@ -58,11 +57,11 @@ var jekyllMapping = (function (apiKey) {
         loadScript: function () {
             var script = document.createElement("script");
             script.type = "text/javascript";
-            script.src = "http://maps.googleapis.com/maps/api/js?key=" + apiKey + "&sensor=false&callback=jekyllMapping.mappingInitialize";
+            script.src = "http://maps.googleapis.com/maps/api/js?key=" + settings.api_key + "&sensor=false&callback=jekyllMapping.mappingInitialize";
             document.body.appendChild(script);
         }
     };
 }());
 
-window.onload = function () { jekyllMapping.loadScript({{ site.mapping.api_key}}) } );
+window.onload = function () { jekyllMapping.loadScript({{ {% yaml_to_json mapping %} }}) } );
 </script>
