@@ -6,8 +6,15 @@
             {% include jekyll_mapping_providers/openstreetmap.js %}
     {% endcase %}
     {% if page.mapping %}
-    <script type="text/javascript">
-        window.onload = function () { jekyllMapping.loadScript({% yaml_to_json mapping %}) };
-    </script>
+    {% case site.mapping.provider %}
+        {% when "google_js" %}
+            <script type="text/javascript">
+                window.onload = function () { jekyllMapping.loadScript({% yaml_to_json mapping %}) };
+            </script>
+        {% when "openstreetmap" %}
+            <script type="text/javascript">
+                window.onload = function () { jekyllMapping.mappingInitialize({% yaml_to_json mapping %}) };
+            </script>
+    {% endcase %}
     {% endif %}
 {% endif %}

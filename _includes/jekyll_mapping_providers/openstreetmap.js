@@ -2,32 +2,32 @@
 <script type="text/javascript">
 var jekyllMapping = (function () {
     'use strict';
-    var settings = {% yaml_to_json mapping %};
+    var settings;
     return {
-        mappingInitialize: function() {
-            var center,
-            markers = new OpenLayers.Layer.Markers("Markers"),
-            map = new OpenLayers.Map("jekyll-mapping");
-            map.addLayer(new OpenLayers.Layer.OSM());
-            map.addLayer(markers);
-
-            if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
-                center = new OpenLayers.LonLat(settings.longitude, settings.latitude).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
-                map.setCenter(center, settings.zoom);
-                markers.addMarker(new OpenLayers.Marker(center));
+        plotArray: function(locations) {
+            var s, l, m, bounds = new OpenLayers.Bounds();
+            while (locations.length > 0) {
+                s = locations.pop();
+                l = new OpenLayers.LonLat(s.longitude, s.latitude).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
+                this.markers.addMarker(new OpenLayers.Marker(l))
+                bounds.extend(l);
             }
+            this.map.zoomToExtent(bounds)
+        },
+        indexMap: function () {
+            this.plotArray(settings.pages);
+        },
+        pageToMap: function () {
+            if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
+                this.center = new OpenLayers.LonLat(settings.longitude, settings.latitude).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
+                this.map.setCenter(this.center, settings.zoom);
+                this.markers.addMarker(new OpenLayers.Marker(this.center));
+            }     
 
             if (settings.locations instanceof Array) {
-                var s, l, m, bounds = new OpenLayers.Bounds();
-                while (settings.locations.length > 0) {
-                    s = settings.locations.pop();
-                    l = new OpenLayers.LonLat(s.longitude, s.latitude).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
-                    markers.addMarker(new OpenLayers.Marker(l))
-                    bounds.extend(l);
-                }
-                map.zoomToExtent(bounds)
+                this.plotArray(settings.locations);
             }
-
+            
             if (settings.layers) {
                 while (settings.layers.length > 0){
                     var m = new OpenLayers.Layer.Vector("KML", {
@@ -41,12 +41,24 @@ var jekyllMapping = (function () {
                                 })
                             })
                         });
-                    map.addLayer(m)
+                    this.map.addLayer(m)
                 }
             }
-        }
+        },
+        mappingInitialize: function (set) {
+            settings = set;
+
+            this.markers = new OpenLayers.Layer.Markers("Markers"),
+            this.map = new OpenLayers.Map("jekyll-mapping");
+            this.map.addLayer(new OpenLayers.Layer.OSM());
+            this.map.addLayer(this.markers);
+
+            if (settings.pages) {
+                this.indexMap();
+            } else {
+                this.pageToMap();
+            }
+        }        
     };
 }());
-
-jekyllMapping.mappingInitialize();
 </script>
