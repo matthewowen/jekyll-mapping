@@ -5,12 +5,21 @@ var jekyllMapping = (function () {
     var settings;
     return {
         plotArray: function(locations) {
+            function jekyllMapListen (m, s) {
+                if (s.link) {
+                    m.events.register('click', m, function() {
+                        window.location.href = s.link;
+                    });
+                }
+            }
             var s, l, m, bounds = new OpenLayers.Bounds();
             while (locations.length > 0) {
                 s = locations.pop();
                 l = new OpenLayers.LonLat(s.longitude, s.latitude).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
-                this.markers.addMarker(new OpenLayers.Marker(l))
+                m = new OpenLayers.Marker(l)
+                this.markers.addMarker(m)
                 bounds.extend(l);
+                jekyllMapListen(m, s);
             }
             this.map.zoomToExtent(bounds)
         },

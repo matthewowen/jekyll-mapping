@@ -4,6 +4,13 @@ var jekyllMapping = (function () {
     var settings;
     return {
         plotArray: function(locations) {
+            function jekyllMapListen (m, s) {
+                if (s.link) {
+                    google.maps.event.addListener(m, 'click', function() {
+                        window.location.href = s.link;
+                    });
+                }
+            }
             var bounds = new google.maps.LatLngBounds(), markers = [], s, l, m;
             while (locations.length > 0) {
                 s = locations.pop();
@@ -15,8 +22,8 @@ var jekyllMapping = (function () {
                     title: s.title
                 });
                 markers.push(m);
-                bounds.extend(l);
-                console.log(m);
+                bounds.extend(l);                
+                jekyllMapListen(m, s);
             }
             this.map.fitBounds(bounds);
         },
