@@ -48,24 +48,44 @@ module Jekyll
             @config = Jekyll.configuration({})['mapping']
             @engine = @config['provider']
             @key = @data['api_key']
-            if text.empty?
-                if @data['dimensions']
-                    @width = @data['dimensions']['width']
-                    @height = @data['dimensions']['height']
-                else
-                    @width = '600'
-                    @height = '400'
-                end
+            @categories = nil
+            if @data['dimensions']
+                @width = @data['dimensions']['width']
+                @height = @data['dimensions']['height']
             else
-                @width = text.split(",").first.strip
-                @height = text.split(",").last.strip
+                @width = '600'
+                @height = '400'
+            end
+            if not text.empty?
+                dimensions = text.split(":").first.strip
+                cat = text.split(":").last.strip
+                if not dimensions.empty?
+                    @width = dimensions.split(",").first.strip
+                    @height = dimensions.split(",").last.strip
+                end
+                if not cat.empty?
+                    @categories = []
+                    for c in cat.split(",")
+                        @categories << c
+                    end
+                end
             end
             super
         end
 
         def render(context)
+            posts = []
+            if @categories
+                for cat in @categories
+                    for post in context.registers[:site].categories[cat]
+                        posts << post
+                    end
+                end
+            else
+                posts = context.registers[:site].posts
+            end
             @data['pages'] = []
-            for post in context.registers[:site].posts
+            for post in posts
                 if true
                     postinfo = {}
                     postinfo['title'] = post.data['title']
