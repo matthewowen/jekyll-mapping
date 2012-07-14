@@ -62,7 +62,7 @@ module Jekyll
 
         def render(context)
             if (@engine == 'google_js' || @engine == 'openstreetmap')
-                return "<div id=\"jekyll-mapping-index\" style=\"height:#{@height}px;width:#{@width}px;\"></div>"
+                return "<div id=\"jekyll-mapping\" style=\"height:#{@height}px;width:#{@width}px;\"></div>"
             end            
         end
     end
@@ -75,14 +75,14 @@ module Jekyll
         end
 
         def render(context)
-            @data['posts'] = []
+            @data['pages'] = []
             for post in context.registers[:site].posts
                 if post.data.has_key?('mapping')
                     postinfo = {}
                     postinfo['title'] = post.data['title']
                     postinfo['link'] = post.url
                     postinfo['mapping'] = post.data['mapping']
-                    @data['posts'] << postinfo
+                    @data['pages'] << postinfo
                 end
             end
             if (@engine == 'google_js' || @engine == 'openstreetmap')

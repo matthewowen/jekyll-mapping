@@ -1,8 +1,13 @@
-{% if site.mapping.provider and page.mapping %}
+{% if site.mapping.provider %}
     {% case site.mapping.provider %}
         {% when "google_js" %}
             {% include jekyll_mapping_providers/gmap_js.js %}
         {% when "openstreetmap" %}
             {% include jekyll_mapping_providers/openstreetmap.js %}
     {% endcase %}
+    {% if page.mapping %}
+    <script type="text/javascript">
+        window.onload = function () { jekyllMapping.loadScript({{ {% yaml_to_json mapping %} }}) } );
+    </script>
+    {% endif %}
 {% endif %}

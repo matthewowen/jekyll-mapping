@@ -2,47 +2,42 @@
 var jekyllMapping = (function (settings) {
     'use strict';
     return {
-        mappingInitialize: function () {
-            var options = {
-                zoom: settings.zoom,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            },
-            map, mainMarker;
-
-            if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
-                options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
-
-                map = new google.maps.Map(document.getElementById("jekyll-mapping"), options);
-
-                mainMarker = new google.maps.Marker({
-                        position: options.center,
-                        map: map,
-                        title: "{{ page.title }}"
-                    });
-            } else {
-                options.center = new google.maps.LatLng(0, 0);
-                map = new google.maps.Map(document.getElementById("jekyll-mapping"), options);
+        plotArray: function(locations) {
+            var bounds = new google.maps.LatLngBounds(), markers = [], s, l, m;
+            while (locations.length > 0) {
+                s = locations.pop();
+                l = new google.maps.LatLng(s.latitude, s.longitude);
+                m = new google.maps.Marker({
+                    position: l,
+                    map: this.map,
+                    title: s.title
+                });
+                markers.push(m);
+                bounds.extend(l);
             }
+            this.map.fitBounds(bounds);
+        },
+        indexMap: function () {
+            this.plotArray(settings.pages);
+        },
+        pageToMap: function () {
+            if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
+                this.options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
+
+                var mainMarker = new google.maps.Marker({
+                    position: this.options.center,
+                    map: this.map,
+                    title: "{{ page.title }}"
+                });
+            }     
 
             if (settings.locations instanceof Array) {
-                var bounds = new google.maps.LatLngBounds(), markers = [], s, l, m;
-                while (settings.locations.length > 0) {
-                    s = settings.locations.pop();
-                    l = new google.maps.LatLng(s.latitude, s.longitude);
-                    m = new google.maps.Marker({
-                        position: l,
-                        map: map,
-                        title: s.title
-                    });
-                    markers.push(m);
-                    bounds.extend(l);
-                }
-                map.fitBounds(bounds);
+                this.plotArray(settings.locations);
             }
 
             if (settings.kml) {
                 var mainLayer = new google.maps.KmlLayer(settings.kml);
-                mainLayer.setMap(map);
+                mainLayer.setMap(this.map);
             }
             
             if (settings.layers) {
@@ -50,8 +45,23 @@ var jekyllMapping = (function (settings) {
                 while (settings.layers.length > 0){
                     var m = new google.maps.KmlLayer(settings.layers.pop());
                     layers.push(m);
-                    m.setMap(map);
+                    m.setMap(this.map);
                 }
+            }
+        },
+        mappingInitialize: function () {
+            var this.options = {
+                zoom: settings.zoom,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: new google.maps.LatLng(0, 0)
+            };
+
+            this.map = new google.maps.Map(document.getElementById("jekyll-mapping"), this.options);
+
+            if (settings.pages) {
+                this.indexMap();
+            } else {
+                this.pageToMap();
             }
         },
         loadScript: function () {
@@ -62,6 +72,4 @@ var jekyllMapping = (function (settings) {
         }
     };
 }());
-
-window.onload = function () { jekyllMapping.loadScript({{ {% yaml_to_json mapping %} }}) } );
-</script>
+</script> 
