@@ -1,11 +1,13 @@
 <script type="text/javascript">
-var jekyllMapping = (function (settings) {
+var jekyllMapping = (function () {
     'use strict';
+    var settings;
     return {
         plotArray: function(locations) {
             var bounds = new google.maps.LatLngBounds(), markers = [], s, l, m;
             while (locations.length > 0) {
                 s = locations.pop();
+                console.log(s);
                 l = new google.maps.LatLng(s.latitude, s.longitude);
                 m = new google.maps.Marker({
                     position: l,
@@ -14,6 +16,7 @@ var jekyllMapping = (function (settings) {
                 });
                 markers.push(m);
                 bounds.extend(l);
+                console.log(m);
             }
             this.map.fitBounds(bounds);
         },
@@ -29,6 +32,7 @@ var jekyllMapping = (function (settings) {
                     map: this.map,
                     title: "{{ page.title }}"
                 });
+                this.map.setCenter(this.options.center);
             }     
 
             if (settings.locations instanceof Array) {
@@ -50,8 +54,8 @@ var jekyllMapping = (function (settings) {
             }
         },
         mappingInitialize: function () {
-            var this.options = {
-                zoom: settings.zoom,
+            this.options = {
+                zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: new google.maps.LatLng(0, 0)
             };
@@ -64,7 +68,8 @@ var jekyllMapping = (function (settings) {
                 this.pageToMap();
             }
         },
-        loadScript: function () {
+        loadScript: function (set) {
+            settings = set;
             var script = document.createElement("script");
             script.type = "text/javascript";
             script.src = "http://maps.googleapis.com/maps/api/js?key=" + settings.api_key + "&sensor=false&callback=jekyllMapping.mappingInitialize";

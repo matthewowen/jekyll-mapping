@@ -42,13 +42,16 @@ module Jekyll
     class MapIndexTag < Liquid::Tag
         
         def initialize(tag_name, text, tokens)
+            @data = Jekyll.configuration({})['mapping']
+            @engine = @data['provider']
+
             @config = Jekyll.configuration({})['mapping']
             @engine = @config['provider']
-            @key = @config['api_key']
+            @key = @data['api_key']
             if text.empty?
-                if @config['dimensions']
-                    @width = @config['dimensions']['width']
-                    @height = @config['dimensions']['height']
+                if @data['dimensions']
+                    @width = @data['dimensions']['width']
+                    @height = @data['dimensions']['height']
                 else
                     @width = '600'
                     @height = '400'
@@ -61,32 +64,25 @@ module Jekyll
         end
 
         def render(context)
-            if (@engine == 'google_js' || @engine == 'openstreetmap')
-                return "<div id=\"jekyll-mapping\" style=\"height:#{@height}px;width:#{@width}px;\"></div>"
-            end            
-        end
-    end
-    class MapIndexScriptData < Liquid::Tag
-        
-        def initialize(tag_name, text, tokens)
-            @data = {}
-            @data['config'] = Jekyll.configuration({})['mapping']
-            super
-        end
-
-        def render(context)
             @data['pages'] = []
             for post in context.registers[:site].posts
-                if post.data.has_key?('mapping')
+                if true
                     postinfo = {}
                     postinfo['title'] = post.data['title']
                     postinfo['link'] = post.url
-                    postinfo['mapping'] = post.data['mapping']
+                    postinfo['latitude'] = post.data['mapping']['latitude']
+                    postinfo['longitude'] = post.data['mapping']['longitude']
                     @data['pages'] << postinfo
                 end
             end
+
             if (@engine == 'google_js' || @engine == 'openstreetmap')
-                return @data.to_json
+                return "
+                    <div id=\"jekyll-mapping\" style=\"height:#{@height}px;width:#{@width}px;\"></div>
+                    <script type=\"text/javascript\">
+                        window.onload = function () { jekyllMapping.loadScript(#{@data.to_json}) };
+                    </script>
+                    "
             end            
         end
     end
@@ -94,4 +90,3 @@ end
 
 Liquid::Template.register_tag('render_map', Jekyll::MapTag)
 Liquid::Template.register_tag('render_index_map', Jekyll::MapIndexTag)
-Liquid::Template.register_tag('map_index_data', Jekyll::MapIndexScriptData)

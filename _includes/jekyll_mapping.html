@@ -7,7 +7,7 @@
     {% endcase %}
     {% if page.mapping %}
     <script type="text/javascript">
-        window.onload = function () { jekyllMapping.loadScript({{ {% yaml_to_json mapping %} }}) } );
+        window.onload = function () { jekyllMapping.loadScript({% yaml_to_json mapping %}) };
     </script>
     {% endif %}
 {% endif %}
