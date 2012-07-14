@@ -1,6 +1,6 @@
 # Jekyll Mapping
 
-Jekyll mapping is a plugin for Jekyll that lets you easily embed Google and OpenStreetMap maps on your content, and then easily add markers and/or KML overlays to those maps.
+Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site.
 
 ## Supported providers
 
@@ -84,6 +84,8 @@ Enjoy!
 
 At it's most basic, you can just set a latitude and longitude for a piece of content. In this case, it'll just plot that location on a map. However, you can do some other exciting things too!
 
+### Multiple Locations
+
 If you set multiple locations, they'll all be mapped and the map will be zoomed and panned to fit them. Do it like so:
 
     mapping:
@@ -95,6 +97,8 @@ If you set multiple locations, they'll all be mapped and the map will be zoomed 
               latitude: -10
               longitude: -10
 
+### KML
+
 If you'd like to use KML, you can do that too. Just add 'layers' in a similar fashion:
 
     mapping:
@@ -103,6 +107,28 @@ If you'd like to use KML, you can do that too. Just add 'layers' in a similar fa
             - http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml
 
 Right now, multiple locations works for both google_js and openstreetmap. KML definitely works for google_js and should work for openstreetmap, but needs more testing.
+
+### Listing content
+
+Use the following tag:
+
+    {% render_index_map %}
+
+This will plot a marker for every post on the site which has a latitude and longitude. Clicking on the marker will take you to the piece of content
+
+Add configuration like so
+
+    {% render_index_map 400,400:foo,bar %}
+
+This will render a 400x400 map, listing posts from the categories 'foo' and 'bar'.
+
+    {% render_index_map :foo,bar %}
+
+This will render a map at the default size, listing posts from the categories 'foo' and 'bar'
+
+    {% render_index_map 400,400: %}
+
+This will render a 400x400 map, listing posts from all categories.
 
 ## Future things to do
 
