@@ -1,6 +1,11 @@
 # Jekyll Mapping
 
-Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site.
+Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it can do:
+
+* Set a location for a piece of content, and display it on a map
+* List your site's content on a map, with each marker linking through to the content
+* Set multiple locations on a piece of content and plot them all on a map
+* Set a KML layer (or multiple KML layers) on a piece of content and display on a map
 
 ## Supported providers
 
