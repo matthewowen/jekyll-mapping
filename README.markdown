@@ -1,11 +1,15 @@
 # Jekyll Mapping
 
-Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it can do:
+Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it makes it easy to do:
 
-* Set a location for a piece of content, and display it on a map
-* List your site's content on a map, with each marker linking through to the content
-* Set multiple locations on a piece of content and plot them all on a map
-* Set a KML layer (or multiple KML layers) on a piece of content and display on a map
+* Give each piece of content a location, allowing you to:
+** Display a map on each page, showing the location set for the content (perfect if you want to list events on your website, and embed a map showing where they are)
+** Display a map, with a marker for each piece of content linking users through to the page (perfect if you're a business and you want to list all of your locations so that users can click through to the nearest one)
+* Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company's offices)
+* Set a KML layer (or multiple KML layers) on a piece of content and display on a map. This one offers a world of possibilities:
+** Show directions or routes
+** Display up to the minute data coming from a continually updating feed
+** Display data overlays on map as a form of data presentation
 
 ## Supported providers
 
@@ -16,7 +20,7 @@ Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google M
 
 https://developers.google.com/maps/documentation/staticmaps/
 
-Embeds a static image, centered on the specificed location, with a marker at the specified location
+Embeds a static image, centered on the specifced location, with a marker at the specified location. This provider doesn't have as much flexibilitity, but it's easy to set up
 
 ### Google JS API
 
@@ -25,16 +29,16 @@ Embeds a static image, centered on the specificed location, with a marker at the
 
 https://developers.google.com/maps/documentation/javascript/
 
-Embeds an interactive map using the V3 JS API. Using this requires an API key to be specified within _config.yml
+Embeds an interactive map using the V3 JS API. Using this requires an API key to be specified within _config.yml (and you'll face usage limits if you don't want to pay money)
 
 ### OpenStreetMap
 
     mapping:
         provider: openstreetmap
 
-Uses [OpenStreetMap](http://www.openstreetmap.org/) and [OpenLayers](http://openlayers.org/) to provide interactive maps. Doesn't require an API key.
+Uses [OpenStreetMap](http://www.openstreetmap.org/) and [OpenLayers](http://openlayers.org/) to provide interactive maps. Doesn't require an API key, and doesn't come with usage limits (but use it responsibly)
 
-## Configuration
+## Basic usage
 
 To use, include configuration information in _config.yml. At minimum, specify a provider:
 
@@ -81,7 +85,7 @@ Include the required JavaScript at the foot of your templates:
     {% include jekyll_mapping.html %}
     </body>
 
-You don't need to wrap the above in any if statements - jekyll-mapping won't output anything if the page doesn't have both a latitude and longitude set.
+You don't need to wrap the above in any if statements - jekyll-mapping won't output anything if it isn't supposed to.
 
 Enjoy!
 
@@ -115,7 +119,7 @@ Right now, multiple locations works for both google_js and openstreetmap. KML de
 
 ### Listing content
 
-Use the following tag:
+Use the following tag instead of {% render_map %}:
 
     {% render_index_map %}
 
@@ -125,7 +129,7 @@ Add configuration like so
 
     {% render_index_map 400,400:foo,bar %}
 
-This will render a 400x400 map, listing posts from the categories 'foo' and 'bar'.
+This will render a 400x400 map, and only list posts from the categories 'foo' and 'bar'.
 
     {% render_index_map :foo,bar %}
 
