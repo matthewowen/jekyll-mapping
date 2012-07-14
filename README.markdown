@@ -95,7 +95,7 @@ At it's most basic, you can just set a latitude and longitude for a piece of con
 
 ### Multiple Locations
 
-If you set multiple locations, they'll all be mapped and the map will be zoomed and panned to fit them. Do it like so:
+If you set multiple locations, they'll all be mapped and the map will be zoomed and panned to fit them. You can even set a link on them (and have them link to content). Use like so:
 
     mapping:
         locations:
@@ -103,6 +103,7 @@ If you set multiple locations, they'll all be mapped and the map will be zoomed 
               latitude: 10
               longitude: 10
             - title: bar
+              link: /some/awesome/path
               latitude: -10
               longitude: -10
 
