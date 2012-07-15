@@ -115,7 +115,6 @@ var jekyllMapping = (function () {
             var bounds = new google.maps.LatLngBounds(), markers = [], s, l, m;
             while (locations.length > 0) {
                 s = locations.pop();
-                console.log(s);
                 l = new google.maps.LatLng(s.latitude, s.longitude);
                 m = new google.maps.Marker({
                     position: l,
@@ -190,7 +189,7 @@ var jekyllMapping = (function () {
     
     
             <script type="text/javascript">
-                window.onload = function () { jekyllMapping.loadScript({"longitude":32,"locations":[{"longitude":10,"title":"Foo location","latitude":15},{"longitude":-3,"title":"Bar location","latitude":-13}],"provider":"google_js","latitude":-14,"zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","dimensions":{"height":350,"width":475}}) };
+                window.onload = function () { jekyllMapping.loadScript({"longitude":32,"locations":[{"longitude":10,"title":"Foo location","latitude":15},{"longitude":-3,"title":"Bar location","latitude":-13}],"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","dimensions":{"width":475,"height":350},"provider":"google_js","latitude":-14,"zoom":10}) };
             </script>
         
     

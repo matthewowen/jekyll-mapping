@@ -101,7 +101,7 @@
                     <div id='jekyll-mapping' style='height:350px;width:475px;'>
                     </div>
                     <script type='text/javascript'>
-                        window.onload = function () { jekyllMapping.loadScript({"pages":[{"longitude":32,"title":"A post with multiple locations","latitude":-14,"link":"/jekyll-mapping/2012/07/15/multiple-locations.html"},{"longitude":10,"title":"A post with a location","latitude":10,"link":"/jekyll-mapping/2012/07/15/post-with-location.html"}],"provider":"google_js","zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","dimensions":{"height":350,"width":475}}); };
+                        window.onload = function () { jekyllMapping.loadScript({"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","dimensions":{"width":475,"height":350},"provider":"google_js","pages":[{"longitude":32,"title":"A post with multiple locations","latitude":-14,"link":"/jekyll-mapping/2012/07/15/multiple-locations.html"},{"longitude":10,"title":"A post with a location","latitude":10,"link":"/jekyll-mapping/2012/07/15/post-with-location.html"}],"zoom":10}); };
                     </script>
                     
 </div>
@@ -274,7 +274,6 @@ var jekyllMapping = (function () {
             var bounds = new google.maps.LatLngBounds(), markers = [], s, l, m;
             while (locations.length > 0) {
                 s = locations.pop();
-                console.log(s);
                 l = new google.maps.LatLng(s.latitude, s.longitude);
                 m = new google.maps.Marker({
                     position: l,
