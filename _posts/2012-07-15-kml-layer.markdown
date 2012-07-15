@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A post with a KML layer
+permalink: kml-layer
 mapping:
     kml: http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss
 

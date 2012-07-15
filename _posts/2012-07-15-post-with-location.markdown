@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A post with a location
+permalink: one-location
 mapping:
     latitude: 10
     longitude: 10
