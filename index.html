@@ -51,11 +51,31 @@
 <p>Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it makes it easy to do:</p>
 
 <ul>
-<li>Give each piece of content a location, allowing you to: * Display a map on each page, showing the location set for the content (perfect if you want to list events on your website, and embed a map showing where they are) * Display a map, with a marker for each piece of content linking users through to the page (perfect if you&#8217;re a business and you want to list all of your locations so that users can click through to the nearest one)</li>
+<li>
+<p>Give each piece of content a location, allowing you to:</p>
 
-<li>Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company&#8217;s offices)</li>
+<ul>
+<li>Display a map on each page, showing the location set for the content (perfect if you want to list events on your website, and embed a map showing where they are)</li>
 
-<li>Set a KML layer (or multiple KML layers) on a piece of content and display on a map. This one offers a world of possibilities: * Show directions or routes * Display up to the minute data coming from a continually updating feed * Display data overlays on map as a form of data presentation</li>
+<li>Display a map, with a marker for each piece of content linking users through to the page (perfect if you&#8217;re a business and you want to list all of your locations so that users can click through to the nearest one)</li>
+</ul>
+</li>
+
+<li>
+<p>Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company&#8217;s offices)</p>
+</li>
+
+<li>
+<p>Set a KML layer (or multiple KML layers) on a piece of content and display on a map. This one offers a world of possibilities:</p>
+
+<ul>
+<li>Show directions or routes</li>
+
+<li>Display up to the minute data coming from a continually updating feed</li>
+
+<li>Display data overlays on map as a form of data presentation</li>
+</ul>
+</li>
 </ul>
 
 <h2 id='examples'>Examples</h2>
@@ -68,7 +88,7 @@
                     <div id='jekyll-mapping' style='height:350px;width:475px;'>
                     </div>
                     <script type='text/javascript'>
-                        window.onload = function () { jekyllMapping.loadScript({"provider":"google_js","dimensions":{"height":350,"width":475},"pages":[{"link":"/jekyll-mapping/2012/07/15/multiple-locations.html","longitude":32,"latitude":-14,"title":"A post with multiple locations"},{"link":"/jekyll-mapping/2012/07/15/post-with-location.html","longitude":10,"latitude":10,"title":"A post with a location"}],"zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI"}); };
+                        window.onload = function () { jekyllMapping.loadScript({"dimensions":{"width":475,"height":350},"zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","pages":[{"link":"/jekyll-mapping/2012/07/15/multiple-locations.html","longitude":32,"latitude":-14,"title":"A post with multiple locations"},{"link":"/jekyll-mapping/2012/07/15/post-with-location.html","longitude":10,"latitude":10,"title":"A post with a location"}],"provider":"google_js"}); };
                     </script>
                     
 </div>
@@ -85,7 +105,7 @@
 <h3 id='google_static_image'>Google static image</h3>
 
 <pre><code>mapping:
-    provider: google_static</code></pre>
+	provider: google_static</code></pre>
 
 <p>https://developers.google.com/maps/documentation/staticmaps/</p>
 
@@ -94,7 +114,7 @@
 <h3 id='google_js_api'>Google JS API</h3>
 
 <pre><code>mapping:
-    provider: google_js</code></pre>
+	provider: google_js</code></pre>
 
 <p>https://developers.google.com/maps/documentation/javascript/</p>
 
@@ -103,7 +123,7 @@
 <h3 id='openstreetmap'>OpenStreetMap</h3>
 
 <pre><code>mapping:
-    provider: openstreetmap</code></pre>
+	provider: openstreetmap</code></pre>
 
 <p>Uses <a href='http://www.openstreetmap.org/'>OpenStreetMap</a> and <a href='http://openlayers.org/'>OpenLayers</a> to provide interactive maps. Doesn&#8217;t require an API key, and doesn&#8217;t come with usage limits (but use it responsibly)</p>
 
@@ -112,34 +132,34 @@
 <p>To use, include configuration information in _config.yml. At minimum, specify a provider:</p>
 
 <pre><code>mapping:
-    provider: google_static</code></pre>
+	provider: google_static</code></pre>
 
 <p>If desired, set default dimensions for maps and a custom zoom level (the default zoom level is 10):</p>
 
 <pre><code>mapping:
-    provider: openstreetmap
-    zoom: 8
-    dimensions:
-        width: 600
-        height: 400</code></pre>
+	provider: openstreetmap
+	zoom: 8
+	dimensions:
+		width: 600
+		height: 400</code></pre>
 
 <p>If using Google JS API, include an API key:</p>
 
 <pre><code>mapping:
-    provider: google_js
-    api_key: 123456
-    zoom: 10
-    dimensions:
-        width: 600
-        height: 400</code></pre>
+	provider: google_js
+	api_key: 123456
+	zoom: 10
+	dimensions:
+		width: 600
+		height: 400</code></pre>
 
 <p>Put the contents of &#8216;_includes&#8217; in your &#8216;_includes&#8217; directory and the contents of &#8216;_plugins&#8217; in your &#8216;_plugins&#8217; directory (or just copy the directories if you don&#8217;t have those directories yet).</p>
 
 <p>Set the relevant values in the YAML front matter of pages and posts:</p>
 
 <pre><code>mapping:
-    latitude: 51.101
-    longitude: 0.1</code></pre>
+	latitude: 51.101
+	longitude: 0.1</code></pre>
 
 <p>Include the render_map tag in your templates where you&#8217;d like the map to appear:</p>
 
@@ -167,23 +187,23 @@
 <p>If you set multiple locations, they&#8217;ll all be mapped and the map will be zoomed and panned to fit them. You can even set a link on them (and have them link to content). Use like so:</p>
 
 <pre><code>mapping:
-    locations:
-        - title: foo
-          latitude: 10
-          longitude: 10
-        - title: bar
-          link: /some/awesome/path
-          latitude: -10
-          longitude: -10</code></pre>
+	locations:
+		- title: foo
+		  latitude: 10
+		  longitude: 10
+		- title: bar
+		  link: /some/awesome/path
+		  latitude: -10
+		  longitude: -10</code></pre>
 
 <h3 id='kml'>KML</h3>
 
 <p>If you&#8217;d like to use KML, you can do that too. Just add &#8216;layers&#8217; in a similar fashion:</p>
 
 <pre><code>mapping:
-    layers:
-        - http://api.flickr.com/services/feeds/geo/?g=322338@N20&amp;lang=en-us&amp;format=feed-georss
-        - http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml</code></pre>
+	layers:
+		- http://api.flickr.com/services/feeds/geo/?g=322338@N20&amp;lang=en-us&amp;format=feed-georss
+		- http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml</code></pre>
 
 <p>Right now, multiple locations works for both google_js and openstreetmap. KML definitely works for google_js and should work for openstreetmap, but needs more testing.</p>
 
