@@ -89,7 +89,11 @@ module Jekyll
                 if true
                     postinfo = {}
                     postinfo['title'] = post.data['title']
-                    postinfo['link'] = post.url
+                    if Jekyll.configuration({})['baseurl']
+                        postinfo['link'] = "#{Jekyll.configuration({})['baseurl']}#{post.url[1..-1]}"
+                    else
+                        postinfo['link'] = post.url
+                    end
                     postinfo['latitude'] = post.data['mapping']['latitude']
                     postinfo['longitude'] = post.data['mapping']['longitude']
                     @data['pages'] << postinfo
