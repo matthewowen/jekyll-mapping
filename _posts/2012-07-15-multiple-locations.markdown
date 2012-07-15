@@ -1,7 +1,6 @@
 ---
 layout: post
 title: A post with multiple locations
-permalink: multiple-locations
 mapping:
     latitude: -14
     longitude: 32

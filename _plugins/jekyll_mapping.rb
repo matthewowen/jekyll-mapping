@@ -90,7 +90,7 @@ module Jekyll
                     postinfo = {}
                     postinfo['title'] = post.data['title']
                     if Jekyll.configuration({})['baseurl']
-                        postinfo['link'] = "#{Jekyll.configuration({})['baseurl']}#{post.url[1..-1]}"
+                        postinfo['link'] = "#{Jekyll.configuration({})['baseurl']}#{post.url.chars.first == "/" ? post.url[1..-1] : post.url}"
                     else
                         postinfo['link'] = post.url
                     end
