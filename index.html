@@ -46,47 +46,51 @@
 
 
       <section id="main_content">
-        <h1>Jekyll Mapping</h1>
+        <h1 id='jekyll_mapping'>Jekyll Mapping</h1>
 
-<p>Jekyll mapping is a plugin for Jekyll that lets you easily embed Google and OpenStreetMap maps on your content, and then easily add markers and/or KML overlays to those maps.</p>
+<p>Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it makes it easy to do:</p>
 
-<h2>Supported providers</h2>
+<ul>
+<li>Give each piece of content a location, allowing you to: * Display a map on each page, showing the location set for the content (perfect if you want to list events on your website, and embed a map showing where they are) * Display a map, with a marker for each piece of content linking users through to the page (perfect if you&#8217;re a business and you want to list all of your locations so that users can click through to the nearest one)</li>
 
-<h3>Google static image</h3>
+<li>Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company&#8217;s offices)</li>
 
-<pre><code>mapping:
-    provider: google_static
-</code></pre>
+<li>Set a KML layer (or multiple KML layers) on a piece of content and display on a map. This one offers a world of possibilities: * Show directions or routes * Display up to the minute data coming from a continually updating feed * Display data overlays on map as a form of data presentation</li>
+</ul>
 
-<p><a href="https://developers.google.com/maps/documentation/staticmaps/">https://developers.google.com/maps/documentation/staticmaps/</a></p>
+<h2 id='supported_providers'>Supported providers</h2>
 
-<p>Embeds a static image, centered on the specificed location, with a marker at the specified location</p>
-
-<h3>Google JS API</h3>
+<h3 id='google_static_image'>Google static image</h3>
 
 <pre><code>mapping:
-    provider: google_js
-</code></pre>
+    provider: google_static</code></pre>
 
-<p><a href="https://developers.google.com/maps/documentation/javascript/">https://developers.google.com/maps/documentation/javascript/</a></p>
+<p>https://developers.google.com/maps/documentation/staticmaps/</p>
 
-<p>Embeds an interactive map using the V3 JS API. Using this requires an API key to be specified within _config.yml</p>
+<p>Embeds a static image, centered on the specifced location, with a marker at the specified location. This provider doesn&#8217;t have as much flexibilitity, but it&#8217;s easy to set up</p>
 
-<h3>OpenStreetMap</h3>
-
-<pre><code>mapping:
-    provider: openstreetmap
-</code></pre>
-
-<p>Uses <a href="http://www.openstreetmap.org/">OpenStreetMap</a> and <a href="http://openlayers.org/">OpenLayers</a> to provide interactive maps. Doesn't require an API key.</p>
-
-<h2>Configuration</h2>
-
-<p>To use, include configuration information in _config.yml. At minimum, specify a provider:</p>
+<h3 id='google_js_api'>Google JS API</h3>
 
 <pre><code>mapping:
-    provider: google_static
-</code></pre>
+    provider: google_js</code></pre>
+
+<p>https://developers.google.com/maps/documentation/javascript/</p>
+
+<p>Embeds an interactive map using the V3 JS API. Using this requires an API key to be specified within <em>config.yml (and you&#8217;ll face usage limits if you don&#8217;t want to pay money)</em></p>
+
+<h3 id='openstreetmap'>OpenStreetMap</h3>
+
+<pre><code>mapping:
+    provider: openstreetmap</code></pre>
+
+<p>Uses <a href='http://www.openstreetmap.org/'>OpenStreetMap</a> and <a href='http://openlayers.org/'>OpenLayers</a> to provide interactive maps. Doesn&#8217;t require an API key, and doesn&#8217;t come with usage limits (but use it responsibly)</p>
+
+<h2 id='basic_usage'>Basic usage</h2>
+
+<p>To use, include configuration information in <em>config.yml. At minimum, specify a provider:</em></p>
+
+<pre><code>mapping:
+    provider: google_static</code></pre>
 
 <p>If desired, set default dimensions for maps and a custom zoom level (the default zoom level is 10):</p>
 
@@ -95,8 +99,7 @@
     zoom: 8
     dimensions:
         width: 600
-        height: 400
-</code></pre>
+        height: 400</code></pre>
 
 <p>If using Google JS API, include an API key:</p>
 
@@ -106,43 +109,40 @@
     zoom: 10
     dimensions:
         width: 600
-        height: 400
-</code></pre>
+        height: 400</code></pre>
 
-<p>Put the contents of '_includes' in your '_includes' directory and the contents of '_plugins' in your '_plugins' directory (or just copy the directories if you don't have those directories yet).</p>
+<p>Put the contents of &#8216;_includes&#8217; in your &#8216;_includes&#8217; directory and the contents of &#8216;_plugins&#8217; in your &#8216;_plugins&#8217; directory (or just copy the directories if you don&#8217;t have those directories yet).</p>
 
 <p>Set the relevant values in the YAML front matter of pages and posts:</p>
 
 <pre><code>mapping:
     latitude: 51.101
-    longitude: 0.1
-</code></pre>
+    longitude: 0.1</code></pre>
 
-<p>Include the render_map tag in your templates where you'd like the map to appear:</p>
+<p>Include the render_map tag in your templates where you&#8217;d like the map to appear:</p>
 
-<pre><code>{% render_map %}
-</code></pre>
+<pre><code>{% render_map %}</code></pre>
 
 <p>Optionally, specify the width for the map here:</p>
 
-<pre><code>{% render_map 500,500 %}
-</code></pre>
+<pre><code>{% render_map 500,500 %}</code></pre>
 
 <p>Include the required JavaScript at the foot of your templates:</p>
 
 <pre><code>{% include jekyll_mapping.html %}
-&lt;/body&gt;
-</code></pre>
+&lt;/body&gt;</code></pre>
 
-<p>You don't need to wrap the above in any if statements - jekyll-mapping won't output anything if the page doesn't have both a latitude and longitude set.</p>
+<p>You don&#8217;t need to wrap the above in any if statements - jekyll-mapping won&#8217;t output anything if it isn&#8217;t supposed to.</p>
 
 <p>Enjoy!</p>
 
-<h2>Further usage</h2>
+<h2 id='further_usage'>Further usage</h2>
 
-<p>At it's most basic, you can just set a latitude and longitude for a piece of content. In this case, it'll just plot that location on a map. However, you can do some other exciting things too!</p>
+<p>At it&#8217;s most basic, you can just set a latitude and longitude for a piece of content. In this case, it&#8217;ll just plot that location on a map. However, you can do some other exciting things too!</p>
 
-<p>If you set multiple locations, they'll all be mapped and the map will be zoomed and panned to fit them. Do it like so:</p>
+<h3 id='multiple_locations'>Multiple Locations</h3>
+
+<p>If you set multiple locations, they&#8217;ll all be mapped and the map will be zoomed and panned to fit them. You can even set a link on them (and have them link to content). Use like so:</p>
 
 <pre><code>mapping:
     locations:
@@ -150,19 +150,42 @@
           latitude: 10
           longitude: 10
         - title: bar
+          link: /some/awesome/path
           latitude: -10
-          longitude: -10
-</code></pre>
+          longitude: -10</code></pre>
 
-<p>If you'd like to use KML, you can do that too. Just add 'layers' in a similar fashion:</p>
+<h3 id='kml'>KML</h3>
+
+<p>If you&#8217;d like to use KML, you can do that too. Just add &#8216;layers&#8217; in a similar fashion:</p>
 
 <pre><code>mapping:
     layers:
         - http://api.flickr.com/services/feeds/geo/?g=322338@N20&amp;lang=en-us&amp;format=feed-georss
-        - http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml
-</code></pre>
+        - http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml</code></pre>
 
 <p>Right now, multiple locations works for both google_js and openstreetmap. KML definitely works for google_js and should work for openstreetmap, but needs more testing.</p>
+
+<h3 id='listing_content'>Listing content</h3>
+
+<p>Use the following tag instead of {% render_map %}:</p>
+
+<pre><code>{% render_index_map %}</code></pre>
+
+<p>This will plot a marker for every post on the site which has a latitude and longitude. Clicking on the marker will take you to the piece of content</p>
+
+<p>Add configuration like so</p>
+
+<pre><code>{% render_index_map 400,400:foo,bar %}</code></pre>
+
+<p>This will render a 400x400 map, and only list posts from the categories &#8216;foo&#8217; and &#8216;bar&#8217;.</p>
+
+<pre><code>{% render_index_map :foo,bar %}</code></pre>
+
+<p>This will render a map at the default size, listing posts from the categories &#8216;foo&#8217; and &#8216;bar&#8217;</p>
+
+<pre><code>{% render_index_map 400,400: %}</code></pre>
+
+<p>This will render a 400x400 map, listing posts from all categories.</p>
       </section>
 
       <footer>
