@@ -52,7 +52,7 @@
 
 <ul>
 <li>Give each piece of content a location, allowing you to. This means you can show a map on each piece of content, showing its location, but also lets you show all of your site&#8217;s content on a map, like this: <div style='height:400px;width:600px;' id='jekyll-mapping' /> <script type='text/javascript'>
-                      window.onload = function () { jekyllMapping.loadScript({"dimensions":{"height":400,"width":600},"zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","provider":"google_js","pages":[{"title":"A post with a KML layer","longitude":null,"latitude":null,"link":"kml-layer"},{"title":"A post with multiple locations","longitude":32,"latitude":-14,"link":"multiple-locations"},{"title":"A post with a location","longitude":10,"latitude":10,"link":"one-location"}]}) };
+                      window.onload = function () { jekyllMapping.loadScript({"dimensions":{"width":600,"height":400},"pages":[{"title":"A post with a KML layer","longitude":null,"latitude":null,"link":"kml-layer"},{"title":"A post with multiple locations","longitude":32,"latitude":-14,"link":"multiple-locations"},{"title":"A post with a location","longitude":10,"latitude":10,"link":"one-location"}],"provider":"google_js","api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","zoom":10}) };
                   </script></li>
 
 <li>Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company&#8217;s offices): <a href='/multiple-locations'>see an example</a></li>
@@ -203,7 +203,97 @@
       </footer>
 
     </div>
-
     
+    
+            <script type="text/javascript">
+var jekyllMapping = (function () {
+    'use strict';
+    var settings;
+    return {
+        plotArray: function(locations) {
+            function jekyllMapListen (m, s) {
+                if (s.link) {
+                    google.maps.event.addListener(m, 'click', function() {
+                        window.location.href = s.link;
+                    });
+                }
+            }
+            var bounds = new google.maps.LatLngBounds(), markers = [], s, l, m;
+            while (locations.length > 0) {
+                s = locations.pop();
+                console.log(s);
+                l = new google.maps.LatLng(s.latitude, s.longitude);
+                m = new google.maps.Marker({
+                    position: l,
+                    map: this.map,
+                    title: s.title
+                });
+                markers.push(m);
+                bounds.extend(l);                
+                jekyllMapListen(m, s);
+            }
+            this.map.fitBounds(bounds);
+        },
+        indexMap: function () {
+            this.plotArray(settings.pages);
+        },
+        pageToMap: function () {
+            if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
+                this.options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
+
+                var mainMarker = new google.maps.Marker({
+                    position: this.options.center,
+                    map: this.map,
+                    title: ""
+                });
+                this.map.setCenter(this.options.center);
+            }     
+
+            if (settings.locations instanceof Array) {
+                this.plotArray(settings.locations);
+            }
+
+            if (settings.kml) {
+                var mainLayer = new google.maps.KmlLayer(settings.kml);
+                mainLayer.setMap(this.map);
+            }
+            
+            if (settings.layers) {
+                var layers = [];
+                while (settings.layers.length > 0){
+                    var m = new google.maps.KmlLayer(settings.layers.pop());
+                    layers.push(m);
+                    m.setMap(this.map);
+                }
+            }
+        },
+        mappingInitialize: function () {
+            this.options = {
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: new google.maps.LatLng(0, 0)
+            };
+
+            this.map = new google.maps.Map(document.getElementById("jekyll-mapping"), this.options);
+
+            if (settings.pages) {
+                this.indexMap();
+            } else {
+                this.pageToMap();
+            }
+        },
+        loadScript: function (set) {
+            settings = set;
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://maps.googleapis.com/maps/api/js?key=" + settings.api_key + "&sensor=false&callback=jekyllMapping.mappingInitialize";
+            document.body.appendChild(script);
+        }
+    };
+}());
+</script> 
+        
+    
+
   </body>
 </html>

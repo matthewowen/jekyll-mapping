@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Jekyll-mapping by matthewowen</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/matthewowen/jekyll-mapping">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Jekyll-mapping</h1>
+            <h2>Easily embed maps on Jekyll sites, with support for Google Maps and OpenStreetMap</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/matthewowen/jekyll-mapping/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/matthewowen/jekyll-mapping/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>A post with multiple locations</h2>
+<div id="jekyll-mapping" style="height:400px;width:600px;"></div>
+<p>This page has a latitude and longitude set, so it is plotted at that location on the front page. However, it&#8217;s also got a few secondary locations set, which are plotted on this page&#8217;s map (but not on the front page).</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/matthewowen">matthewowen</a> can be found on <a href="https://github.com/matthewowen/jekyll-mapping">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+    
+    
+            <script type="text/javascript">
+var jekyllMapping = (function () {
+    'use strict';
+    var settings;
+    return {
+        plotArray: function(locations) {
+            function jekyllMapListen (m, s) {
+                if (s.link) {
+                    google.maps.event.addListener(m, 'click', function() {
+                        window.location.href = s.link;
+                    });
+                }
+            }
+            var bounds = new google.maps.LatLngBounds(), markers = [], s, l, m;
+            while (locations.length > 0) {
+                s = locations.pop();
+                console.log(s);
+                l = new google.maps.LatLng(s.latitude, s.longitude);
+                m = new google.maps.Marker({
+                    position: l,
+                    map: this.map,
+                    title: s.title
+                });
+                markers.push(m);
+                bounds.extend(l);                
+                jekyllMapListen(m, s);
+            }
+            this.map.fitBounds(bounds);
+        },
+        indexMap: function () {
+            this.plotArray(settings.pages);
+        },
+        pageToMap: function () {
+            if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
+                this.options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
+
+                var mainMarker = new google.maps.Marker({
+                    position: this.options.center,
+                    map: this.map,
+                    title: "A post with multiple locations"
+                });
+                this.map.setCenter(this.options.center);
+            }     
+
+            if (settings.locations instanceof Array) {
+                this.plotArray(settings.locations);
+            }
+
+            if (settings.kml) {
+                var mainLayer = new google.maps.KmlLayer(settings.kml);
+                mainLayer.setMap(this.map);
+            }
+            
+            if (settings.layers) {
+                var layers = [];
+                while (settings.layers.length > 0){
+                    var m = new google.maps.KmlLayer(settings.layers.pop());
+                    layers.push(m);
+                    m.setMap(this.map);
+                }
+            }
+        },
+        mappingInitialize: function () {
+            this.options = {
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: new google.maps.LatLng(0, 0)
+            };
+
+            this.map = new google.maps.Map(document.getElementById("jekyll-mapping"), this.options);
+
+            if (settings.pages) {
+                this.indexMap();
+            } else {
+                this.pageToMap();
+            }
+        },
+        loadScript: function (set) {
+            settings = set;
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://maps.googleapis.com/maps/api/js?key=" + settings.api_key + "&sensor=false&callback=jekyllMapping.mappingInitialize";
+            document.body.appendChild(script);
+        }
+    };
+}());
+</script> 
+        
+    
+    
+            <script type="text/javascript">
+                window.onload = function () { jekyllMapping.loadScript({"dimensions":{"width":600,"height":400},"longitude":32,"provider":"google_js","api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","latitude":-14,"locations":[{"title":"Foo location","longitude":10,"latitude":15},{"title":"Bar location","longitude":-3,"latitude":-13}],"zoom":10}) };
+            </script>
+        
+    
+
+  </body>
+</html>
