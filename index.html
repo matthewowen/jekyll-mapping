@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Jekyll-mapping by matthewowen</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/matthewowen/jekyll-mapping">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Jekyll-mapping</h1>
+            <h2>Easily embed maps on Jekyll sites, with support for Google Maps and OpenStreetMap</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/matthewowen/jekyll-mapping/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/matthewowen/jekyll-mapping/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>Jekyll Mapping</h1>
+
+<p>Jekyll mapping is a plugin for Jekyll that lets you easily embed Google and OpenStreetMap maps on your content, and then easily add markers and/or KML overlays to those maps.</p>
+
+<h2>Supported providers</h2>
+
+<h3>Google static image</h3>
+
+<pre><code>mapping:
+    provider: google_static
+</code></pre>
+
+<p><a href="https://developers.google.com/maps/documentation/staticmaps/">https://developers.google.com/maps/documentation/staticmaps/</a></p>
+
+<p>Embeds a static image, centered on the specificed location, with a marker at the specified location</p>
+
+<h3>Google JS API</h3>
+
+<pre><code>mapping:
+    provider: google_js
+</code></pre>
+
+<p><a href="https://developers.google.com/maps/documentation/javascript/">https://developers.google.com/maps/documentation/javascript/</a></p>
+
+<p>Embeds an interactive map using the V3 JS API. Using this requires an API key to be specified within _config.yml</p>
+
+<h3>OpenStreetMap</h3>
+
+<pre><code>mapping:
+    provider: openstreetmap
+</code></pre>
+
+<p>Uses <a href="http://www.openstreetmap.org/">OpenStreetMap</a> and <a href="http://openlayers.org/">OpenLayers</a> to provide interactive maps. Doesn't require an API key.</p>
+
+<h2>Configuration</h2>
+
+<p>To use, include configuration information in _config.yml. At minimum, specify a provider:</p>
+
+<pre><code>mapping:
+    provider: google_static
+</code></pre>
+
+<p>If desired, set default dimensions for maps and a custom zoom level (the default zoom level is 10):</p>
+
+<pre><code>mapping:
+    provider: openstreetmap
+    zoom: 8
+    dimensions:
+        width: 600
+        height: 400
+</code></pre>
+
+<p>If using Google JS API, include an API key:</p>
+
+<pre><code>mapping:
+    provider: google_js
+    api_key: 123456
+    zoom: 10
+    dimensions:
+        width: 600
+        height: 400
+</code></pre>
+
+<p>Put the contents of '_includes' in your '_includes' directory and the contents of '_plugins' in your '_plugins' directory (or just copy the directories if you don't have those directories yet).</p>
+
+<p>Set the relevant values in the YAML front matter of pages and posts:</p>
+
+<pre><code>mapping:
+    latitude: 51.101
+    longitude: 0.1
+</code></pre>
+
+<p>Include the render_map tag in your templates where you'd like the map to appear:</p>
+
+<pre><code>{% render_map %}
+</code></pre>
+
+<p>Optionally, specify the width for the map here:</p>
+
+<pre><code>{% render_map 500,500 %}
+</code></pre>
+
+<p>Include the required JavaScript at the foot of your templates:</p>
+
+<pre><code>{% include jekyll_mapping.html %}
+&lt;/body&gt;
+</code></pre>
+
+<p>You don't need to wrap the above in any if statements - jekyll-mapping won't output anything if the page doesn't have both a latitude and longitude set.</p>
+
+<p>Enjoy!</p>
+
+<h2>Further usage</h2>
+
+<p>At it's most basic, you can just set a latitude and longitude for a piece of content. In this case, it'll just plot that location on a map. However, you can do some other exciting things too!</p>
+
+<p>If you set multiple locations, they'll all be mapped and the map will be zoomed and panned to fit them. Do it like so:</p>
+
+<pre><code>mapping:
+    locations:
+        - title: foo
+          latitude: 10
+          longitude: 10
+        - title: bar
+          latitude: -10
+          longitude: -10
+</code></pre>
+
+<p>If you'd like to use KML, you can do that too. Just add 'layers' in a similar fashion:</p>
+
+<pre><code>mapping:
+    layers:
+        - http://api.flickr.com/services/feeds/geo/?g=322338@N20&amp;lang=en-us&amp;format=feed-georss
+        - http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml
+</code></pre>
+
+<p>Right now, multiple locations works for both google_js and openstreetmap. KML definitely works for google_js and should work for openstreetmap, but needs more testing.</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/matthewowen">matthewowen</a> can be found on <a href="https://github.com/matthewowen/jekyll-mapping">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
