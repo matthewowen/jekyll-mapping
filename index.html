@@ -51,8 +51,8 @@
 <p>Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it makes it easy to do:</p>
 
 <ul>
-<li>Give each piece of content a location, allowing you to. This means you can show a map on each piece of content, showing its location, but also lets you show all of your site&#8217;s content on a map, like this: <div id='jekyll-mapping' style='height:350px;width:500px;' /> <script type='text/javascript'>
-                      window.onload = function () { jekyllMapping.loadScript({"dimensions":{"height":350,"width":500},"zoom":10,"pages":[{"link":"/2012/07/15/kml-layer.html","longitude":null,"title":"A post with a KML layer","latitude":null},{"link":"/2012/07/15/multiple-locations.html","longitude":32,"title":"A post with multiple locations","latitude":-14},{"link":"/2012/07/15/post-with-location.html","longitude":10,"title":"A post with a location","latitude":10}],"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","provider":"google_js"}) };
+<li>Give each piece of content a location, allowing you to. This means you can show a map on each piece of content, showing its location, but also lets you show all of your site&#8217;s content on a map, like this: <div style='height:350px;width:500px;' id='jekyll-mapping' /> <script type='text/javascript'>
+                      window.onload = function () { jekyllMapping.loadScript({"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","dimensions":{"height":350,"width":500},"provider":"google_js","pages":[{"longitude":null,"latitude":null,"title":"A post with a KML layer","link":"/2012/07/15/kml-layer.html"},{"longitude":32,"latitude":-14,"title":"A post with multiple locations","link":"/2012/07/15/multiple-locations.html"},{"longitude":10,"latitude":10,"title":"A post with a location","link":"/2012/07/15/post-with-location.html"}],"zoom":10}) };
                   </script></li>
 
 <li>Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company&#8217;s offices): <a href='/multiple-locations'>see an example</a></li>
