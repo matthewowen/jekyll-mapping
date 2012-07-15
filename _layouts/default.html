@@ -46,6 +46,11 @@
 
 
       <section id="main_content">
+        <ul>
+        {% for post in site.posts limit:10 %}
+            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        {% endfor %}
+        </ul>
         {{ content }}
       </section>
 
@@ -62,7 +67,6 @@
       </footer>
 
     </div>
-
-    
+    {% include jekyll_mapping.html %}
   </body>
 </html>

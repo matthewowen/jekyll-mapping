@@ -1,7 +1,8 @@
+baseurl: /jekyll-mapping/
 mapping:
     provider: google_js
     api_key: AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI
     zoom: 10
     dimensions:
-        width: 600
-        height: 400
+        width: 500
+        height: 350

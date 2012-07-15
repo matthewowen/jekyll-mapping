@@ -6,14 +6,9 @@ layout: page
 
 Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it makes it easy to do:
 
-* Give each piece of content a location, allowing you to:
-    * Display a map on each page, showing the location set for the content (perfect if you want to list events on your website, and embed a map showing where they are)
-    * Display a map, with a marker for each piece of content linking users through to the page (perfect if you're a business and you want to list all of your locations so that users can click through to the nearest one)
-* Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company's offices)
-* Set a KML layer (or multiple KML layers) on a piece of content and display on a map. This one offers a world of possibilities:
-    * Show directions or routes
-    * Display up to the minute data coming from a continually updating feed
-    * Display data overlays on map as a form of data presentation
+* Give each piece of content a location, allowing you to. This means you can show a map on each piece of content, showing its location, but also lets you show all of your site's content on a map, like this: {% render_index_map %}
+* Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company's offices): [see an example](/multiple-locations)
+* Set a KML layer (or multiple KML layers) on a piece of content and display on a map. This one offers a world of possibilities: data overlays, directions or routes, up to the minute data from a continually updating feed: [see an example](/kml-layer)
 
 ## Supported providers
 
