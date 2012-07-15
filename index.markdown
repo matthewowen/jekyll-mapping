@@ -19,16 +19,19 @@ Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google M
 
 ### Plot your Jekyll site's content on a map
 
-Try clicking on the markers... <br />{% render_index_map %}
+Try clicking on the markers...
 
+<div>
+{% render_index_map %}
+</div>
 
-### Set multiple locations on a single piece of Jekyll content, and map them all
+### Set multiple locations on a single piece of Jekyll content, and map them all:
 
-[See the example](/jekyll-mapping/2012/07/15/multiple-locations.html)
+[See the example...](/jekyll-mapping/2012/07/15/multiple-locations.html)
 
 ### Display a KML overlay on a piece of Jekyll content
 
-[See the example](/jekyll-mapping/2012/07/15/kml-layer.html)
+[See the example...](/jekyll-mapping/2012/07/15/kml-layer.html)
 
 ## Supported providers
 
