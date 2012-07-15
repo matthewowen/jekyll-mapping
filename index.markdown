@@ -88,6 +88,11 @@ If using Google JS API, include an API key:
 
 Put the contents of '_includes' in your '_includes' directory and the contents of '_plugins' in your '_plugins' directory (or just copy the directories if you don't have those directories yet).
 
+Include the required JavaScript at the foot of your templates:
+
+	{{ "{% include jekyll_mapping.html " }}%}
+	</body>
+
 Set the relevant values in the YAML front matter of pages and posts:
 
 	mapping:
@@ -101,11 +106,6 @@ Include the render_map tag in your templates where you'd like the map to appear:
 Optionally, specify the width for the map here:
 
 	{{ "{% render_map 500,500 " }}%}
-
-Include the required JavaScript at the foot of your templates:
-
-	{{ "{% include jekyll_mapping.html " }}%}
-	</body>
 
 You don't need to wrap the above in any if statements - jekyll-mapping won't output anything if it isn't supposed to.
 
