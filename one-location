@@ -47,7 +47,7 @@
 
       <section id="main_content">
         <h1>A post with a location</h2>
-<div id="jekyll-mapping" style="height:400px;width:600px;"></div>
+<div id="jekyll-mapping" style="height:350px;width:500px;"></div>
 <p>Here&#8217;s an example of a post that has a location set. This page has a map, showing the post&#8217;s location, and this post is also plotted on the map on the front page.</p>
       </section>
 
@@ -157,7 +157,7 @@ var jekyllMapping = (function () {
     
     
             <script type="text/javascript">
-                window.onload = function () { jekyllMapping.loadScript({"dimensions":{"width":600,"height":400},"longitude":10,"provider":"google_js","api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","latitude":10,"zoom":10}) };
+                window.onload = function () { jekyllMapping.loadScript({"provider":"google_js","zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","latitude":10,"longitude":10,"dimensions":{"height":350,"width":500}}) };
             </script>
         
     

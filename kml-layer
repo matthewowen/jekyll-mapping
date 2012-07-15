@@ -47,7 +47,7 @@
 
       <section id="main_content">
         <h1>A post with a KML layer</h2>
-<div id="jekyll-mapping" style="height:400px;width:600px;"></div>
+<div id="jekyll-mapping" style="height:350px;width:500px;"></div>
 <p>This page has a latitude and longitude set, so it isn&#8217;t plotted on the front page. However, it does have a KML layers set, which is plotted on this page&#8217;s map.</p>
       </section>
 
@@ -157,7 +157,7 @@ var jekyllMapping = (function () {
     
     
             <script type="text/javascript">
-                window.onload = function () { jekyllMapping.loadScript({"dimensions":{"width":600,"height":400},"provider":"google_js","kml":"http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss","api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","zoom":10}) };
+                window.onload = function () { jekyllMapping.loadScript({"provider":"google_js","zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","kml":"http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss","dimensions":{"height":350,"width":500}}) };
             </script>
         
     

@@ -51,8 +51,8 @@
 <p>Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it makes it easy to do:</p>
 
 <ul>
-<li>Give each piece of content a location, allowing you to. This means you can show a map on each piece of content, showing its location, but also lets you show all of your site&#8217;s content on a map, like this: <div style='height:400px;width:600px;' id='jekyll-mapping' /> <script type='text/javascript'>
-                      window.onload = function () { jekyllMapping.loadScript({"dimensions":{"width":600,"height":400},"pages":[{"title":"A post with a KML layer","longitude":null,"latitude":null,"link":"kml-layer"},{"title":"A post with multiple locations","longitude":32,"latitude":-14,"link":"multiple-locations"},{"title":"A post with a location","longitude":10,"latitude":10,"link":"one-location"}],"provider":"google_js","api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","zoom":10}) };
+<li>Give each piece of content a location, allowing you to. This means you can show a map on each piece of content, showing its location, but also lets you show all of your site&#8217;s content on a map, like this: <div style='height:350px;width:500px;' id='jekyll-mapping' /> <script type='text/javascript'>
+                      window.onload = function () { jekyllMapping.loadScript({"provider":"google_js","zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","pages":[{"title":"A post with a KML layer","longitude":null,"latitude":null,"link":"kml-layer"},{"title":"A post with multiple locations","longitude":32,"latitude":-14,"link":"multiple-locations"},{"title":"A post with a location","longitude":10,"latitude":10,"link":"one-location"}],"dimensions":{"height":350,"width":500}}) };
                   </script></li>
 
 <li>Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company&#8217;s offices): <a href='/multiple-locations'>see an example</a></li>
