@@ -1,0 +1,11 @@
+---
+layout: post
+title: A post with a KML layer
+mapping:
+    kml: http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss
+
+date: 2012-07-15
+published: true
+---
+
+This page has a latitude and longitude set, so it isn't plotted on the front page. However, it does have a KML layers set, which is plotted on this page's map.
