@@ -88,7 +88,7 @@
                     <div id='jekyll-mapping' style='height:350px;width:475px;'>
                     </div>
                     <script type='text/javascript'>
-                        window.onload = function () { jekyllMapping.loadScript({"dimensions":{"width":475,"height":350},"zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","pages":[{"link":"/jekyll-mapping/2012/07/15/multiple-locations.html","longitude":32,"latitude":-14,"title":"A post with multiple locations"},{"link":"/jekyll-mapping/2012/07/15/post-with-location.html","longitude":10,"latitude":10,"title":"A post with a location"}],"provider":"google_js"}); };
+                        window.onload = function () { jekyllMapping.loadScript({"zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","pages":[{"latitude":-14,"longitude":32,"link":"/jekyll-mapping/2012/07/15/multiple-locations.html","title":"A post with multiple locations"},{"latitude":10,"longitude":10,"link":"/jekyll-mapping/2012/07/15/post-with-location.html","title":"A post with a location"}],"dimensions":{"height":350,"width":475},"provider":"google_js"}); };
                     </script>
                     
 </div>
@@ -155,6 +155,11 @@
 
 <p>Put the contents of &#8216;_includes&#8217; in your &#8216;_includes&#8217; directory and the contents of &#8216;_plugins&#8217; in your &#8216;_plugins&#8217; directory (or just copy the directories if you don&#8217;t have those directories yet).</p>
 
+<p>Include the required JavaScript at the foot of your templates:</p>
+
+<pre><code>{% include jekyll_mapping.html %}
+&lt;/body&gt;</code></pre>
+
 <p>Set the relevant values in the YAML front matter of pages and posts:</p>
 
 <pre><code>mapping:
@@ -168,11 +173,6 @@
 <p>Optionally, specify the width for the map here:</p>
 
 <pre><code>{% render_map 500,500 %}</code></pre>
-
-<p>Include the required JavaScript at the foot of your templates:</p>
-
-<pre><code>{% include jekyll_mapping.html %}
-&lt;/body&gt;</code></pre>
 
 <p>You don&#8217;t need to wrap the above in any if statements - jekyll-mapping won&#8217;t output anything if it isn&#8217;t supposed to.</p>
 
