@@ -86,7 +86,7 @@ module Jekyll
             end
             @data['pages'] = []
             for post in posts
-                if true
+                if post.data['mapping'].has_key?('latitude') && post.data['mapping'].has_key?('longitude')
                     postinfo = {}
                     postinfo['title'] = post.data['title']
                     if Jekyll.configuration({})['baseurl']
