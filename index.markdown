@@ -28,7 +28,7 @@ Embeds a static image, centered on the specifced location, with a marker at the 
 
 https://developers.google.com/maps/documentation/javascript/
 
-Embeds an interactive map using the V3 JS API. Using this requires an API key to be specified within _config.yml (and you'll face usage limits if you don't want to pay money)
+Embeds an interactive map using the V3 JS API. Using this requires an API key to be specified within \_config.yml (and you'll face usage limits if you don't want to pay money)
 
 ### OpenStreetMap
 
@@ -39,7 +39,7 @@ Uses [OpenStreetMap](http://www.openstreetmap.org/) and [OpenLayers](http://open
 
 ## Basic usage
 
-To use, include configuration information in _config.yml. At minimum, specify a provider:
+To use, include configuration information in \_config.yml. At minimum, specify a provider:
 
     mapping:
         provider: google_static
