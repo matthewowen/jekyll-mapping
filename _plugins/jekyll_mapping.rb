@@ -102,17 +102,19 @@ module Jekyll
 
             if (@engine == 'google_js')
                 return "
-                    <div id=\"jekyll-mapping\" style=\"height:#{@height}px;width:#{@width}px;\"></div>
-                    <script type=\"text/javascript\">
-                        window.onload = function () { jekyllMapping.loadScript(#{@data.to_json}) };
+                    <div id='jekyll-mapping' style='height:#{@height}px;width:#{@width}px;'>
+                    </div>
+                    <script type='text/javascript'>
+                        window.onload = function () { jekyllMapping.loadScript(#{@data.to_json}); };
                     </script>
                     "
             end   
             if (@engine == 'openstreetmap')
                 return "
-                    <div id=\"jekyll-mapping\" style=\"height:#{@height}px;width:#{@width}px;\"></div>
-                    <script type=\"text/javascript\">
-                        window.onload = function () { jekyllMapping.mappingInitialize(#{@data.to_json}) };
+                    <div id='jekyll-mapping' style='height:#{@height}px;width:#{@width}px;'>
+                    </div>
+                    <script type='text/javascript'>
+                        window.onload = function () { jekyllMapping.mappingInitialize(#{@data.to_json}); };
                     </script>
                     "
             end         
