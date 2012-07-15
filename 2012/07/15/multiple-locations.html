@@ -47,8 +47,28 @@
 
       <section id="main_content">
         <h1>A post with multiple locations</h2>
-<div id="jekyll-mapping" style="height:350px;width:500px;"></div>
+<div id="jekyll-mapping" style="height:350px;width:475px;"></div>
 <p>This page has a latitude and longitude set, so it is plotted at that location on the front page. However, it&#8217;s also got a few secondary locations set, which are plotted on this page&#8217;s map (but not on the front page).</p>
+
+<p>The YAML frontmatter for this post looks like this:</p>
+
+<pre><code>---
+layout: post
+title: A post with multiple locations
+mapping:
+    latitude: -14
+    longitude: 32
+    locations:
+        -   title: Foo location
+            latitude: 15
+            longitude: 10
+        -   title: Bar location
+            latitude: -13
+            longitude: -3
+
+date: 2012-07-15
+published: true
+---</code></pre>
       </section>
 
       <footer>
@@ -157,7 +177,7 @@ var jekyllMapping = (function () {
     
     
             <script type="text/javascript">
-                window.onload = function () { jekyllMapping.loadScript({"provider":"google_js","dimensions":{"height":350,"width":500},"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","latitude":-14,"zoom":10,"longitude":32,"locations":[{"latitude":15,"title":"Foo location","longitude":10},{"latitude":-13,"title":"Bar location","longitude":-3}]}) };
+                window.onload = function () { jekyllMapping.loadScript({"locations":[{"longitude":10,"title":"Foo location","latitude":15},{"longitude":-3,"title":"Bar location","latitude":-13}],"provider":"google_js","longitude":32,"zoom":10,"latitude":-14,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","dimensions":{"height":350,"width":475}}) };
             </script>
         
     
