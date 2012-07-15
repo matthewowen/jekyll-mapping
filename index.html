@@ -51,14 +51,34 @@
 <p>Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it makes it easy to do:</p>
 
 <ul>
-<li>Give each piece of content a location, allowing you to. This means you can show a map on each piece of content, showing its location, but also lets you show all of your site&#8217;s content on a map, like this: <div style='height:350px;width:475px;' id='jekyll-mapping' /> <script type='text/javascript'>
-                      window.onload = function () { jekyllMapping.loadScript({"pages":[{"longitude":32,"title":"A post with multiple locations","latitude":-14,"link":"/jekyll-mapping/2012/07/15/multiple-locations.html"},{"longitude":10,"title":"A post with a location","latitude":10,"link":"/jekyll-mapping/2012/07/15/post-with-location.html"}],"provider":"google_js","zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","dimensions":{"height":350,"width":475}}) };
-                  </script></li>
+<li>Give each piece of content a location, allowing you to: * Display a map on each page, showing the location set for the content (perfect if you want to list events on your website, and embed a map showing where they are) * Display a map, with a marker for each piece of content linking users through to the page (perfect if you&#8217;re a business and you want to list all of your locations so that users can click through to the nearest one)</li>
 
-<li>Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company&#8217;s offices): <a href='/jekyll-mapping/2012/07/15/multiple-locations.html'>see an example</a></li>
+<li>Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company&#8217;s offices)</li>
 
-<li>Set a KML layer (or multiple KML layers) on a piece of content and display on a map. This one offers a world of possibilities: data overlays, directions or routes, up to the minute data from a continually updating feed: <a href='/jekyll-mapping/2012/07/15/kml-layer.html'>see an example</a></li>
+<li>Set a KML layer (or multiple KML layers) on a piece of content and display on a map. This one offers a world of possibilities: * Show directions or routes * Display up to the minute data coming from a continually updating feed * Display data overlays on map as a form of data presentation</li>
 </ul>
+
+<h2 id='examples'>Examples</h2>
+
+<h3 id='plot_your_jekyll_sites_content_on_a_map'>Plot your Jekyll site&#8217;s content on a map</h3>
+
+<p>Try clicking on the markers&#8230;</p>
+<div>
+
+                    <div id='jekyll-mapping' style='height:350px;width:475px;'>
+                    </div>
+                    <script type='text/javascript'>
+                        window.onload = function () { jekyllMapping.loadScript({"provider":"google_js","dimensions":{"height":350,"width":475},"pages":[{"link":"/jekyll-mapping/2012/07/15/multiple-locations.html","longitude":32,"latitude":-14,"title":"A post with multiple locations"},{"link":"/jekyll-mapping/2012/07/15/post-with-location.html","longitude":10,"latitude":10,"title":"A post with a location"}],"zoom":10,"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI"}); };
+                    </script>
+                    
+</div>
+<h3 id='set_multiple_locations_on_a_single_piece_of_jekyll_content_and_map_them_all'>Set multiple locations on a single piece of Jekyll content, and map them all:</h3>
+
+<p><a href='/jekyll-mapping/2012/07/15/multiple-locations.html'>See the example&#8230;</a></p>
+
+<h3 id='display_a_kml_overlay_on_a_piece_of_jekyll_content'>Display a KML overlay on a piece of Jekyll content</h3>
+
+<p><a href='/jekyll-mapping/2012/07/15/kml-layer.html'>See the example&#8230;</a></p>
 
 <h2 id='supported_providers'>Supported providers</h2>
 
