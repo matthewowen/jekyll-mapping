@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=640" />
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+    <link rel="stylesheet" href="/jekyll-mapping/stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="/jekyll-mapping/stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="/jekyll-mapping/stylesheets/pygment_trac.css"/>
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="/jekyll-mapping/javascripts/modernizr.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript" src="/jekyll-mapping/javascripts/headsmart.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
         $('#main_content').headsmart()
@@ -48,11 +48,11 @@
       <section id="main_content">
         <ul>
         
-            <h2><a href="/2012/07/15/post-with-location.html">A post with a location</a></h2>
+            <h2><a href="one-location">A post with a location</a></h2>
         
-            <h2><a href="/2012/07/15/multiple-locations.html">A post with multiple locations</a></h2>
+            <h2><a href="multiple-locations">A post with multiple locations</a></h2>
         
-            <h2><a href="/2012/07/15/kml-layer.html">A post with a KML layer</a></h2>
+            <h2><a href="kml-layer">A post with a KML layer</a></h2>
         
         </ul>
         <h1 id='jekyll_mapping'>Jekyll Mapping</h1>
@@ -60,13 +60,13 @@
 <p>Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it makes it easy to do:</p>
 
 <ul>
-<li>Give each piece of content a location, allowing you to. This means you can show a map on each piece of content, showing its location, but also lets you show all of your site&#8217;s content on a map, like this: <div id='jekyll-mapping' style='height:350px;width:500px;' /> <script type='text/javascript'>
-                      window.onload = function () { jekyllMapping.loadScript({"dimensions":{"height":350,"width":500},"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","zoom":10,"provider":"google_js","pages":[{"link":"/2012/07/15/kml-layer.html","latitude":null,"longitude":null,"title":"A post with a KML layer"},{"link":"/2012/07/15/multiple-locations.html","latitude":-14,"longitude":32,"title":"A post with multiple locations"},{"link":"/2012/07/15/post-with-location.html","latitude":10,"longitude":10,"title":"A post with a location"}]}) };
+<li>Give each piece of content a location, allowing you to. This means you can show a map on each piece of content, showing its location, but also lets you show all of your site&#8217;s content on a map, like this: <div style='height:350px;width:500px;' id='jekyll-mapping' /> <script type='text/javascript'>
+                      window.onload = function () { jekyllMapping.loadScript({"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","dimensions":{"height":350,"width":500},"pages":[{"latitude":-14,"longitude":32,"title":"A post with multiple locations","link":"/jekyll-mapping/multiple-locations/"},{"latitude":10,"longitude":10,"title":"A post with a location","link":"/jekyll-mapping/one-location/"}],"zoom":10,"provider":"google_js"}) };
                   </script></li>
 
-<li>Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company&#8217;s offices): <a href='/multiple-locations'>see an example</a></li>
+<li>Set multiple locations on a single piece of content and map them all (perfect if you want a map showing all of your company&#8217;s offices): <a href='/jekyll-mapping/multiple-locations'>see an example</a></li>
 
-<li>Set a KML layer (or multiple KML layers) on a piece of content and display on a map. This one offers a world of possibilities: data overlays, directions or routes, up to the minute data from a continually updating feed: <a href='/kml-layer'>see an example</a></li>
+<li>Set a KML layer (or multiple KML layers) on a piece of content and display on a map. This one offers a world of possibilities: data overlays, directions or routes, up to the minute data from a continually updating feed: <a href='/jekyll-mapping/kml-layer'>see an example</a></li>
 </ul>
 
 <h2 id='supported_providers'>Supported providers</h2>
