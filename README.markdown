@@ -11,6 +11,8 @@ Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google M
     * Display up to the minute data coming from a continually updating feed
     * Display data overlays on map as a form of data presentation
 
+If you'd like to take a look and see some examples, visit [the GitHub page](http://matthewowen.github.com/jekyll-mapping/).
+
 ## Supported providers
 
 ### Google static image
