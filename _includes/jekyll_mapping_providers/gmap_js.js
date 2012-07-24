@@ -2,7 +2,7 @@
 var jekyllMapping = (function () {
     'use strict';
     var settings;
-    return {
+    var that = {
         plotArray: function(locations) {
             function jekyllMapListen (m, s) {
                 if (s.link) {
@@ -17,37 +17,37 @@ var jekyllMapping = (function () {
                 l = new google.maps.LatLng(s.latitude, s.longitude);
                 m = new google.maps.Marker({
                     position: l,
-                    map: this.map,
+                    map: that.map,
                     title: s.title
                 });
                 markers.push(m);
                 bounds.extend(l);                
                 jekyllMapListen(m, s);
             }
-            this.map.fitBounds(bounds);
+            that.map.fitBounds(bounds);
         },
         indexMap: function () {
-            this.plotArray(settings.pages);
+            that.plotArray(settings.pages);
         },
         pageToMap: function () {
             if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
-                this.options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
+                that.options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
 
                 var mainMarker = new google.maps.Marker({
-                    position: this.options.center,
-                    map: this.map,
+                    position: that.options.center,
+                    map: that.map,
                     title: "{{ page.title }}"
                 });
-                this.map.setCenter(this.options.center);
+                that.map.setCenter(that.options.center);
             }     
 
             if (settings.locations instanceof Array) {
-                this.plotArray(settings.locations);
+                that.plotArray(settings.locations);
             }
 
             if (settings.kml) {
                 var mainLayer = new google.maps.KmlLayer(settings.kml);
-                mainLayer.setMap(this.map);
+                mainLayer.setMap(that.map);
             }
             
             if (settings.layers) {
@@ -55,23 +55,23 @@ var jekyllMapping = (function () {
                 while (settings.layers.length > 0){
                     var m = new google.maps.KmlLayer(settings.layers.pop());
                     layers.push(m);
-                    m.setMap(this.map);
+                    m.setMap(that.map);
                 }
             }
         },
         mappingInitialize: function () {
-            this.options = {
+            that.options = {
                 zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: new google.maps.LatLng(0, 0)
             };
 
-            this.map = new google.maps.Map(document.getElementById("jekyll-mapping"), this.options);
+            that.map = new google.maps.Map(document.getElementById("jekyll-mapping"), that.options);
 
             if (settings.pages) {
-                this.indexMap();
+                that.indexMap();
             } else {
-                this.pageToMap();
+                that.pageToMap();
             }
         },
         loadScript: function (set) {
@@ -82,5 +82,6 @@ var jekyllMapping = (function () {
             document.body.appendChild(script);
         }
     };
+    return that;
 }());
 </script> 
