@@ -101,7 +101,7 @@
                     <div id='jekyll-mapping' style='height:350px;width:475px;'>
                     </div>
                     <script type='text/javascript'>
-                        window.onload = function () { jekyllMapping.loadScript({"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI","dimensions":{"width":475,"height":350},"provider":"google_js","pages":[{"longitude":32,"title":"A post with multiple locations","latitude":-14,"link":"/jekyll-mapping/2012/07/15/multiple-locations.html"},{"longitude":10,"title":"A post with a location","latitude":10,"link":"/jekyll-mapping/2012/07/15/post-with-location.html"}],"zoom":10}); };
+                        window.onload = function () { jekyllMapping.loadScript({"zoom":10,"pages":[{"title":"A post with multiple locations","longitude":32,"latitude":-14,"link":"/jekyll-mapping/2012/07/15/multiple-locations.html"},{"title":"A post with a location","longitude":10,"latitude":10,"link":"/jekyll-mapping/2012/07/15/post-with-location.html"}],"provider":"google_js","dimensions":{"width":475,"height":350},"api_key":"AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI"}); };
                     </script>
                     
 </div>
@@ -262,7 +262,7 @@
 var jekyllMapping = (function () {
     'use strict';
     var settings;
-    return {
+    var that = {
         plotArray: function(locations) {
             function jekyllMapListen (m, s) {
                 if (s.link) {
@@ -277,37 +277,37 @@ var jekyllMapping = (function () {
                 l = new google.maps.LatLng(s.latitude, s.longitude);
                 m = new google.maps.Marker({
                     position: l,
-                    map: this.map,
+                    map: that.map,
                     title: s.title
                 });
                 markers.push(m);
                 bounds.extend(l);                
                 jekyllMapListen(m, s);
             }
-            this.map.fitBounds(bounds);
+            that.map.fitBounds(bounds);
         },
         indexMap: function () {
-            this.plotArray(settings.pages);
+            that.plotArray(settings.pages);
         },
         pageToMap: function () {
             if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
-                this.options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
+                that.options.center = new google.maps.LatLng(settings.latitude, settings.longitude);
 
                 var mainMarker = new google.maps.Marker({
-                    position: this.options.center,
-                    map: this.map,
+                    position: that.options.center,
+                    map: that.map,
                     title: ""
                 });
-                this.map.setCenter(this.options.center);
+                that.map.setCenter(that.options.center);
             }     
 
             if (settings.locations instanceof Array) {
-                this.plotArray(settings.locations);
+                that.plotArray(settings.locations);
             }
 
             if (settings.kml) {
                 var mainLayer = new google.maps.KmlLayer(settings.kml);
-                mainLayer.setMap(this.map);
+                mainLayer.setMap(that.map);
             }
             
             if (settings.layers) {
@@ -315,23 +315,23 @@ var jekyllMapping = (function () {
                 while (settings.layers.length > 0){
                     var m = new google.maps.KmlLayer(settings.layers.pop());
                     layers.push(m);
-                    m.setMap(this.map);
+                    m.setMap(that.map);
                 }
             }
         },
         mappingInitialize: function () {
-            this.options = {
+            that.options = {
                 zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: new google.maps.LatLng(0, 0)
             };
 
-            this.map = new google.maps.Map(document.getElementById("jekyll-mapping"), this.options);
+            that.map = new google.maps.Map(document.getElementById("jekyll-mapping"), that.options);
 
             if (settings.pages) {
-                this.indexMap();
+                that.indexMap();
             } else {
-                this.pageToMap();
+                that.pageToMap();
             }
         },
         loadScript: function (set) {
@@ -342,7 +342,8 @@ var jekyllMapping = (function () {
             document.body.appendChild(script);
         }
     };
-}());
+    return that;
+})();
 </script> 
         
     
