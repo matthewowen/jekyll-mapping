@@ -3,7 +3,7 @@
 var jekyllMapping = (function () {
     'use strict';
     var settings;
-    var that = {
+    var obj = {
         plotArray: function(locations) {
             function jekyllMapListen (m, s) {
                 if (s.link) {
@@ -17,24 +17,24 @@ var jekyllMapping = (function () {
                 s = locations.pop();
                 l = new OpenLayers.LonLat(s.longitude, s.latitude).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
                 m = new OpenLayers.Marker(l)
-                that.markers.addMarker(m)
+                this.markers.addMarker(m)
                 bounds.extend(l);
                 jekyllMapListen(m, s);
             }
-            that.map.zoomToExtent(bounds)
+            this.map.zoomToExtent(bounds)
         },
         indexMap: function () {
-            that.plotArray(settings.pages);
+            this.plotArray(settings.pages);
         },
         pageToMap: function () {
             if (typeof(settings.latitude) !== 'undefined' && typeof(settings.longitude) !== 'undefined') {
-                that.center = new OpenLayers.LonLat(settings.longitude, settings.latitude).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
-                that.map.setCenter(that.center, settings.zoom);
-                that.markers.addMarker(new OpenLayers.Marker(that.center));
+                this.center = new OpenLayers.LonLat(settings.longitude, settings.latitude).transform( new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
+                this.map.setCenter(this.center, settings.zoom);
+                this.markers.addMarker(new OpenLayers.Marker(this.center));
             }     
 
             if (settings.locations instanceof Array) {
-                that.plotArray(settings.locations);
+                this.plotArray(settings.locations);
             }
             
             if (settings.layers) {
@@ -50,25 +50,29 @@ var jekyllMapping = (function () {
                                 })
                             })
                         });
-                    that.map.addLayer(m)
+                    this.map.addLayer(m)
                 }
             }
         },
         mappingInitialize: function (set) {
             settings = set;
 
-            that.markers = new OpenLayers.Layer.Markers("Markers"),
-            that.map = new OpenLayers.Map("jekyll-mapping");
-            that.map.addLayer(new OpenLayers.Layer.OSM());
-            that.map.addLayer(that.markers);
+            this.markers = new OpenLayers.Layer.Markers("Markers"),
+            this.map = new OpenLayers.Map("jekyll-mapping");
+            this.map.addLayer(new OpenLayers.Layer.OSM());
+            this.map.addLayer(this.markers);
 
             if (settings.pages) {
-                that.indexMap();
+                this.indexMap();
             } else {
-                that.pageToMap();
+                this.pageToMap();
             }
         }        
     };
+<<<<<<< Updated upstream
     return that;
+=======
+    return obj
+>>>>>>> Stashed changes
 }());
 </script>

@@ -1,5 +1,5 @@
 mapping:
-    provider: google_js
+    provider: openstreetmap
     api_key: AIzaSyDNhj22EqZoDYXSF90FMCQjS-nQx4JG4uI
     zoom: 10
     dimensions:
