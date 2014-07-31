@@ -1,3 +1,5 @@
+NB: I hope this helps you, but I have to be honest: I'm not really working on this anymore, and so I can't rule out that there are things that don't work right etc etc etc. If you want to contribute or fork or anything, please do! But I just don't really have the bandwidth for bugfixes, let alone feature requests! Sorry :(.
+
 # Jekyll Mapping
 
 Jekyll mapping is a plugin for Jekyll that takes away the pain of using Google Maps and OpenStreetMap on your site. Here are some of the things it makes it easy to do:
