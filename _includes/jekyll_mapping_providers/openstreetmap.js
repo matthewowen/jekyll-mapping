@@ -21,7 +21,7 @@ var jekyllMapping = (function () {
                 bounds.extend(l);
                 jekyllMapListen(m, s);
             }
-            this.map.zoomToExtent(bounds)
+            this.map.zoomToExtent(bounds);
         },
         indexMap: function () {
             this.plotArray(settings.pages);
@@ -69,10 +69,6 @@ var jekyllMapping = (function () {
             }
         }        
     };
-<<<<<<< Updated upstream
-    return that;
-=======
-    return obj
->>>>>>> Stashed changes
+    return obj;
 }());
 </script>
